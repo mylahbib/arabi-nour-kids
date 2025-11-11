@@ -24,6 +24,18 @@ const Lesson = () => {
   const currentLetter = letters[currentLetterIndex];
   const progress = ((currentLetterIndex + 1) / letters.length) * 100;
 
+  // Safety check - if currentLetter is undefined, navigate back
+  if (!currentLetter) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-primary/5 to-secondary/10">
+        <Card className="p-8 text-center">
+          <p className="text-xl text-muted-foreground mb-4">الدرس غير متوفر</p>
+          <Button onClick={() => navigate("/home")}>العودة للرئيسية</Button>
+        </Card>
+      </div>
+    );
+  }
+
   const handleActivityComplete = (success: boolean) => {
     setShowFeedback(true);
 
