@@ -8,70 +8,107 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Khutwa Kids - Arabic Learning Color System */
-    --background: 40 100% 97%; /* Off White #FFF9F0 */
-    --foreground: 0 0% 20%;
+    /* Duolingo ABC Style - Bright & Playful */
+    --background: 0 0% 100%; /* Pure White #FFFFFF */
+    --foreground: 0 0% 10%; /* Dark Text #1A1A1A */
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 20%;
+    --card: 142 76% 94%; /* Light Green Surface #E5F8E0 */
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 20%;
+    --popover-foreground: 0 0% 10%;
 
-    /* Fresh Green - Primary */
-    --primary: 93 75% 50%; /* #58CC02 */
+    /* Duolingo Green - Primary */
+    --primary: 88 81% 42%; /* #58CC02 */
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 93 75% 60%;
+    --primary-glow: 88 81% 52%;
 
-    /* Soft Yellow - Secondary */
-    --secondary: 48 100% 65%; /* #FFD54F */
-    --secondary-foreground: 0 0% 20%;
+    /* Duolingo Orange - Secondary */
+    --secondary: 40 100% 50%; /* #FFB800 */
+    --secondary-foreground: 0 0% 10%;
 
-    /* Sky Blue - Accent */
-    --accent: 189 75% 80%; /* #AEEAF5 */
-    --accent-foreground: 0 0% 20%;
+    /* Duolingo Orange - Accent */
+    --accent: 40 100% 50%; /* #FFB800 */
+    --accent-foreground: 0 0% 10%;
 
-    /* Coral Red - Alert */
-    --destructive: 5 100% 68%; /* #FF6F61 */
+    /* Destructive */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --muted: 48 30% 90%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 142 40% 90%;
+    --muted-foreground: 0 0% 40%;
 
-    --border: 48 30% 85%;
-    --input: 48 30% 85%;
-    --ring: 93 75% 50%;
+    --border: 142 30% 80%;
+    --input: 142 30% 80%;
+    --ring: 88 81% 42%;
 
-    --radius: 1.5rem;
+    --radius: 1rem;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(93 75% 50%), hsl(93 75% 60%));
-    --gradient-secondary: linear-gradient(135deg, hsl(48 100% 65%), hsl(48 100% 75%));
-    --gradient-accent: linear-gradient(135deg, hsl(189 75% 80%), hsl(189 75% 90%));
-    --gradient-success: linear-gradient(135deg, hsl(93 75% 50%), hsl(142 71% 45%));
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 88 81% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 142 40% 90%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 142 30% 80%;
+    --sidebar-ring: 88 81% 42%;
 
-    /* Shadows - Soft and Playful */
-    --shadow-sm: 0 2px 8px hsla(93 75% 50% / 0.15);
-    --shadow-md: 0 4px 16px hsla(93 75% 50% / 0.2);
-    --shadow-lg: 0 8px 24px hsla(93 75% 50% / 0.25);
-    --shadow-glow: 0 0 20px hsla(93 75% 60% / 0.4);
+    /* Gradients - Duolingo style */
+    --gradient-primary: linear-gradient(135deg, hsl(88, 81%, 42%), hsl(88, 81%, 52%));
+    --gradient-secondary: linear-gradient(135deg, hsl(40, 100%, 50%), hsl(40, 100%, 60%));
+    --gradient-success: linear-gradient(135deg, hsl(88, 81%, 42%), hsl(142, 76%, 36%));
+    --gradient-surface: linear-gradient(180deg, hsl(0, 0%, 100%), hsl(142, 76%, 94%));
 
-    /* Animations */
+    /* Shadows - Duolingo style */
+    --shadow-sm: 0 2px 8px rgba(88, 204, 2, 0.15);
+    --shadow-md: 0 4px 16px rgba(88, 204, 2, 0.2);
+    --shadow-lg: 0 8px 24px rgba(88, 204, 2, 0.25);
+    --shadow-xl: 0 12px 32px rgba(88, 204, 2, 0.3);
+    --shadow-glow: 0 0 32px rgba(88, 204, 2, 0.4);
+
+    /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .dark {
-    --background: 0 0% 12%;
+    --background: 0 0% 10%;
     --foreground: 0 0% 95%;
-    --card: 0 0% 15%;
+
+    --card: 0 0% 14%;
     --card-foreground: 0 0% 95%;
-    --primary: 93 75% 45%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 88 81% 42%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 48 100% 55%;
-    --secondary-foreground: 0 0% 20%;
-    --accent: 189 75% 70%;
-    --accent-foreground: 0 0% 20%;
+    --primary-glow: 88 81% 52%;
+
+    --secondary: 40 100% 50%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 40 100% 50%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 88 81% 42%;
+
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 88 81% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 20%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 88 81% 42%;
   }
 }
 
@@ -82,7 +119,11 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Noto Kufi Arabic', 'Tajawal', sans-serif;
+    font-family: 'Nunito', 'Poppins', 'Noto Kufi Arabic', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fredoka One', 'Baloo 2', 'Noto Kufi Arabic', sans-serif;
   }
 }
 
@@ -122,7 +163,17 @@ All colors MUST be HSL.
 
   /* Glow effect */
   .glow-success {
-    box-shadow: 0 0 20px hsla(93 75% 60% / 0.5);
+    box-shadow: var(--shadow-glow);
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(88, 204, 2, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(88, 204, 2, 0.6);
+    }
   }
 
   /* Kid-friendly button */

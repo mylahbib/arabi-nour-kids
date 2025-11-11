@@ -13,6 +13,11 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        heading: ['Fredoka One', 'Baloo 2', 'Noto Kufi Arabic', 'sans-serif'],
+        body: ['Nunito', 'Poppins', 'Noto Kufi Arabic', 'sans-serif'],
+        arabic: ['Noto Kufi Arabic', 'Tajawal', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -22,6 +27,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -57,6 +63,12 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      boxShadow: {
+        'duolingo-sm': 'var(--shadow-sm)',
+        'duolingo-md': 'var(--shadow-md)',
+        'duolingo-lg': 'var(--shadow-lg)',
+        'duolingo-xl': 'var(--shadow-xl)',
       },
       borderRadius: {
         lg: "var(--radius)",
