@@ -181,4 +181,9 @@ All colors MUST be HSL.
     @apply rounded-3xl text-lg font-bold px-8 py-4 shadow-md transition-all duration-300;
     @apply hover:scale-105 hover:shadow-lg active:scale-95;
   }
+
+  /* Animated glow pulse */
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
 }
