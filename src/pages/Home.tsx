@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import mascot from "@/assets/mascot.png";
+import { ArrowLeft, Menu } from "lucide-react";
+import mascotReading from "@/assets/mascot-reading.png";
 
 interface UserData {
   name: string;
@@ -29,199 +28,166 @@ const Home = () => {
   if (!user) return null;
 
   const lessons = [
-    { id: 1, title: "الحروف", icon: "🔤", locked: false, progress: 0, position: "left" },
-    { id: 2, title: "المقاطع", icon: "🎵", locked: true, progress: 0, position: "right" },
-    { id: 3, title: "الكلمات", icon: "📝", locked: true, progress: 0, position: "left" },
-    { id: 4, title: "الجمل", icon: "💬", locked: true, progress: 0, position: "center" },
-    { id: 5, title: "القراءة", icon: "📖", locked: true, progress: 0, position: "right" },
+    { id: 1, title: "الحروف", icon: "🔤", locked: false, progress: 100, position: "center" },
+    { id: 2, title: "المقاطع", icon: "🎵", locked: false, progress: 100, position: "right" },
+    { id: 3, title: "الكلمات", icon: "📝", locked: false, progress: 50, position: "left" },
+    { id: 4, title: "الجمل", icon: "💬", locked: true, progress: 0, position: "right" },
+    { id: 5, title: "القراءة", icon: "📖", locked: true, progress: 0, position: "center" },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-card to-background p-4 pb-20 relative overflow-hidden">
-      {/* Sky & Clouds Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 left-10 text-6xl animate-float opacity-70">☁️</div>
-        <div className="absolute top-20 right-20 text-5xl animate-float opacity-60" style={{ animationDelay: '1s' }}>☁️</div>
-        <div className="absolute top-40 left-1/3 text-7xl animate-float opacity-50" style={{ animationDelay: '2s' }}>☁️</div>
-        <div className="absolute bottom-20 right-10 text-4xl">🌳</div>
-        <div className="absolute bottom-20 left-10 text-4xl">🌳</div>
+    <div className="min-h-screen relative overflow-hidden" style={{
+      background: 'linear-gradient(180deg, #3E2723 0%, #4E342E 50%, #5D4037 100%)',
+      backgroundImage: `
+        repeating-linear-gradient(90deg, rgba(0,0,0,0.1) 0px, transparent 2px, transparent 50px, rgba(0,0,0,0.1) 52px),
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.1) 0px, transparent 2px, transparent 80px, rgba(0,0,0,0.1) 82px)
+      `
+    }}>
+      {/* Top Navigation */}
+      <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between p-4">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => navigate("/progress")}
+          className="w-14 h-14 rounded-full bg-white hover:bg-white/90 shadow-lg"
+        >
+          <ArrowLeft className="w-6 h-6 text-primary" />
+        </Button>
+        
+        <div className="flex gap-3">
+          <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-lg">
+            <span className="text-xl">🔥</span>
+            <span className="font-bold text-primary">{user.streak}</span>
+          </div>
+          <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-lg">
+            <span className="text-xl">⭐</span>
+            <span className="font-bold text-warning">{user.xp}</span>
+          </div>
+        </div>
+        
+        <Button
+          variant="ghost"
+          size="icon"
+          className="w-14 h-14 rounded-full bg-white hover:bg-white/90 shadow-lg"
+        >
+          <Menu className="w-6 h-6 text-primary" />
+        </Button>
       </div>
 
-      {/* Header */}
-      <div className="max-w-4xl mx-auto relative z-10">
-        <Card className="p-4 mb-6 shadow-duolingo-lg border-0 bg-card/95 backdrop-blur rounded-2xl">
-          <div className="flex items-center justify-between" dir="rtl">
-            <div className="flex items-center gap-3">
-              <div className="text-4xl animate-float">🎓</div>
-              <div>
-                <h1 className="text-2xl font-heading font-bold text-primary">
-                  مرحبا {user.name}!
-                </h1>
-                <p className="text-sm text-muted-foreground font-body">استمر في مغامرتك!</p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="text-center bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-2 min-w-[60px]">
-                <div className="text-2xl mb-1">🔥</div>
-                <div className="text-xl font-bold text-primary">{user.streak}</div>
-                <div className="text-[10px] text-muted-foreground">يوم</div>
-              </div>
-              <div className="text-center bg-gradient-to-br from-warning/10 to-warning/5 rounded-xl p-2 min-w-[60px]">
-                <div className="text-2xl mb-1">⭐</div>
-                <div className="text-xl font-bold text-warning">{user.xp}</div>
-                <div className="text-[10px] text-muted-foreground">نقطة</div>
-              </div>
-            </div>
-          </div>
-        </Card>
-
-        {/* Adventure Road Title */}
-        <div className="text-center mb-8">
-          <h2 className="text-4xl font-heading font-bold text-primary mb-2" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.1)' }}>
-            طريق المغامرات 🗺️
-          </h2>
-          <p className="text-lg font-body text-foreground/80">اتبع الطريق وتعلم مع صديقك!</p>
-        </div>
-
-        {/* Adventure Road Path */}
-        <div className="relative py-8" dir="rtl">
-          {/* Winding Path SVG */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
-            <defs>
-              <linearGradient id="pathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style={{ stopColor: '#007DD9', stopOpacity: 0.3 }} />
-                <stop offset="100%" style={{ stopColor: '#FF8DA1', stopOpacity: 0.3 }} />
-              </linearGradient>
-            </defs>
-            <path
-              d="M 50 50 Q 300 100, 200 200 T 250 350 T 200 500 T 250 650"
-              stroke="url(#pathGradient)"
-              strokeWidth="40"
-              fill="none"
-              strokeLinecap="round"
-              opacity="0.6"
+      {/* Mascot at Top */}
+      <div className="absolute top-24 left-1/2 -translate-x-1/2 z-20">
+        <div className="relative">
+          <div className="w-28 h-28 rounded-full bg-primary flex items-center justify-center shadow-2xl border-4 border-white">
+            <img 
+              src={mascotReading} 
+              alt="Mascot" 
+              className="w-24 h-24 object-contain drop-shadow-lg"
             />
-          </svg>
+          </div>
+        </div>
+      </div>
 
-          {/* Lesson Nodes */}
-          <div className="space-y-16 relative z-10">
-            {lessons.map((lesson, index) => {
-              const isActive = !lesson.locked;
-              const positionClass = 
-                lesson.position === "left" ? "mr-auto ml-8" :
-                lesson.position === "right" ? "ml-auto mr-8" :
-                "mx-auto";
-              
-              return (
-                <div key={lesson.id} className={`relative w-64 ${positionClass}`}>
-                  {/* Connection Line to Next Node */}
-                  {index < lessons.length - 1 && (
-                    <div className="absolute top-full left-1/2 w-1 h-16 -translate-x-1/2 bg-gradient-to-b from-primary/40 to-transparent" />
-                  )}
+      {/* Lesson Path */}
+      <div className="max-w-md mx-auto pt-56 pb-20 px-4 relative">
+        {lessons.map((lesson, index) => {
+          const isActive = !lesson.locked;
+          const isCompleted = lesson.progress === 100;
+          const isInProgress = lesson.progress > 0 && lesson.progress < 100;
+          
+          // Calculate horizontal offset based on position
+          const offsetX = 
+            lesson.position === "left" ? -60 :
+            lesson.position === "right" ? 60 : 0;
 
-                  {/* Mascot at Current Level */}
-                  {isActive && index === 0 && (
-                    <div className="absolute -top-24 left-1/2 -translate-x-1/2 z-20">
-                      <img 
-                        src={mascot} 
-                        alt="Mascot" 
-                        className="w-20 h-20 animate-bounce-soft drop-shadow-lg"
-                      />
-                      <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-white rounded-2xl px-4 py-2 shadow-duolingo-md whitespace-nowrap">
-                        <p className="text-sm font-body font-semibold text-primary">هيا نبدأ! 🎉</p>
-                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-white rotate-45" />
-                      </div>
-                    </div>
-                  )}
+          return (
+            <div key={lesson.id} className="relative flex justify-center mb-4">
+              {/* Connecting Dots */}
+              {index < lessons.length - 1 && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 py-2" style={{ transform: `translateX(${offsetX}px)` }}>
+                  {[...Array(3)].map((_, i) => (
+                    <div 
+                      key={i}
+                      className={`w-3 h-3 rounded-full ${
+                        isActive ? 'bg-warning' : 'bg-gray-600'
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
 
-                  {/* Lesson Node Card */}
-                   <Card
-                    className={`p-6 rounded-2xl border-4 transition-all duration-300 relative ${
-                      lesson.locked
-                        ? "opacity-60 grayscale border-muted bg-card/50"
-                        : "border-primary shadow-duolingo-lg hover:scale-105 cursor-pointer bg-card animate-pulse-glow"
-                    }`}
-                    onClick={() => !lesson.locked && navigate(`/lesson/${lesson.id}`)}
-                  >
-                    {/* Completion Badge */}
-                    {!lesson.locked && lesson.progress === 100 && (
-                      <Badge className="absolute -top-3 -right-3 bg-success text-success-foreground border-0 rounded-full px-3 py-1 shadow-duolingo-md">
-                        ⭐ مكتمل
-                      </Badge>
-                    )}
-
-                    <div className="text-center">
-                      {/* Icon */}
-                      <div className={`text-6xl mb-3 ${lesson.locked ? "" : "animate-float"}`}>
-                        {lesson.locked ? "🔒" : lesson.icon}
-                      </div>
-
-                      {/* Title */}
-                      <h3 className="text-2xl font-heading font-bold mb-2 text-foreground">
-                        {lesson.title}
-                      </h3>
-
-                      {/* Progress Stars */}
-                      <div className="flex justify-center gap-1 mb-3">
-                        {[1, 2, 3].map((star) => (
-                          <span key={star} className="text-2xl">
-                            {lesson.locked ? "⭐" : lesson.progress >= star * 33 ? "⭐" : "☆"}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Status */}
-                      <p className="text-sm font-body text-muted-foreground mb-4">
-                        {lesson.locked ? "🔒 مغلق" : lesson.progress === 100 ? "✅ مكتمل" : "📚 جاهز"}
-                      </p>
-
-                      {/* Button */}
-                      {!lesson.locked && (
-                        <Button
-                          className="w-full rounded-xl font-body font-bold text-lg shadow-duolingo-md hover:shadow-duolingo-lg transition-all"
-                          size="lg"
-                        >
-                          {lesson.progress === 100 ? "إعادة الدرس" : "ابدأ المغامرة"}
-                        </Button>
-                      )}
-                    </div>
-                  </Card>
-
-                  {/* Decorative Elements */}
+              {/* Lesson Node */}
+              <div 
+                className="relative"
+                style={{ transform: `translateX(${offsetX}px)` }}
+              >
+                <button
+                  onClick={() => !lesson.locked && navigate(`/lesson/${lesson.id}`)}
+                  disabled={lesson.locked}
+                  className={`
+                    relative w-32 h-32 rounded-full flex items-center justify-center
+                    transition-all duration-300 font-heading text-5xl
+                    ${lesson.locked 
+                      ? 'bg-gray-600 cursor-not-allowed opacity-60' 
+                      : isCompleted
+                        ? 'bg-gradient-to-b from-warning via-yellow-500 to-orange-600 shadow-2xl cursor-pointer hover:scale-110'
+                        : isInProgress
+                          ? 'bg-gradient-to-b from-yellow-400 via-warning to-yellow-600 shadow-2xl cursor-pointer hover:scale-110'
+                          : 'bg-gradient-to-b from-yellow-300 via-warning to-orange-500 shadow-2xl cursor-pointer hover:scale-110'
+                    }
+                  `}
+                  style={{
+                    boxShadow: lesson.locked 
+                      ? 'inset 0 -8px 0 rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.3)'
+                      : 'inset 0 -12px 0 rgba(180,100,0,0.4), 0 12px 30px rgba(255,180,0,0.5)'
+                  }}
+                >
+                  {/* Inner Circle */}
+                  <div className={`
+                    absolute inset-3 rounded-full flex items-center justify-center
+                    ${lesson.locked 
+                      ? 'bg-gray-700' 
+                      : 'bg-gradient-to-b from-yellow-200 to-yellow-400'
+                    }
+                  `}>
+                    {lesson.locked ? "🔒" : isCompleted ? "✓" : lesson.icon}
+                  </div>
+                  
+                  {/* Small decorative bumps */}
                   {!lesson.locked && (
                     <>
-                      <div className="absolute -right-8 top-1/2 -translate-y-1/2 text-3xl animate-float" style={{ animationDelay: `${index * 0.5}s` }}>
-                        ✨
-                      </div>
-                      <div className="absolute -left-8 top-1/4 text-2xl animate-float" style={{ animationDelay: `${index * 0.7}s` }}>
-                        🌟
-                      </div>
+                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-warning" 
+                           style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }} />
+                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-warning" 
+                           style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }} />
+                      <div className="absolute top-1/2 -translate-y-1/2 -left-2 w-4 h-4 rounded-full bg-warning" 
+                           style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }} />
+                      <div className="absolute top-1/2 -translate-y-1/2 -right-2 w-4 h-4 rounded-full bg-warning" 
+                           style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }} />
                     </>
                   )}
+                </button>
+
+                {/* Lesson Title Below */}
+                <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                  <p className={`text-sm font-heading font-bold ${
+                    lesson.locked ? 'text-gray-400' : 'text-white'
+                  }`}>
+                    {lesson.title}
+                  </p>
                 </div>
-              );
-            })}
-          </div>
 
-          {/* Bottom Landscape Elements */}
-          <div className="mt-16 flex justify-center gap-8 text-5xl">
-            <span className="animate-float" style={{ animationDelay: '0.5s' }}>🏆</span>
-            <span className="animate-float" style={{ animationDelay: '1s' }}>🎯</span>
-            <span className="animate-float" style={{ animationDelay: '1.5s' }}>🎨</span>
-          </div>
-        </div>
-
-        {/* Progress Button */}
-        <div className="mt-12 text-center">
-          <Button
-            onClick={() => navigate("/progress")}
-            className="text-xl font-heading rounded-2xl shadow-duolingo-lg hover:shadow-duolingo-xl transition-all px-8 py-6"
-            size="lg"
-          >
-            <span className="text-3xl ml-2">📊</span>
-            شاهد تقدمك
-          </Button>
-        </div>
+                {/* Completion Stars */}
+                {!lesson.locked && isCompleted && (
+                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex gap-1">
+                    {[1, 2, 3].map((star) => (
+                      <span key={star} className="text-xl drop-shadow-lg">⭐</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
