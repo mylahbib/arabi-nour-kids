@@ -37,7 +37,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#E5F8E0] via-[#B3E5FC] to-[#E5F8E0] p-4 pb-20 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-background via-card to-background p-4 pb-20 relative overflow-hidden">
       {/* Sky & Clouds Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-10 text-6xl animate-float opacity-70">☁️</div>
@@ -49,7 +49,7 @@ const Home = () => {
 
       {/* Header */}
       <div className="max-w-4xl mx-auto relative z-10">
-        <Card className="p-4 mb-6 shadow-duolingo-lg border-0 bg-white/95 backdrop-blur rounded-2xl">
+        <Card className="p-4 mb-6 shadow-duolingo-lg border-0 bg-card/95 backdrop-blur rounded-2xl">
           <div className="flex items-center justify-between" dir="rtl">
             <div className="flex items-center gap-3">
               <div className="text-4xl animate-float">🎓</div>
@@ -66,9 +66,9 @@ const Home = () => {
                 <div className="text-xl font-bold text-primary">{user.streak}</div>
                 <div className="text-[10px] text-muted-foreground">يوم</div>
               </div>
-              <div className="text-center bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-xl p-2 min-w-[60px]">
+              <div className="text-center bg-gradient-to-br from-warning/10 to-warning/5 rounded-xl p-2 min-w-[60px]">
                 <div className="text-2xl mb-1">⭐</div>
-                <div className="text-xl font-bold text-secondary">{user.xp}</div>
+                <div className="text-xl font-bold text-warning">{user.xp}</div>
                 <div className="text-[10px] text-muted-foreground">نقطة</div>
               </div>
             </div>
@@ -89,8 +89,8 @@ const Home = () => {
           <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
             <defs>
               <linearGradient id="pathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style={{ stopColor: '#58CC02', stopOpacity: 0.3 }} />
-                <stop offset="100%" style={{ stopColor: '#FFB800', stopOpacity: 0.3 }} />
+                <stop offset="0%" style={{ stopColor: '#007DD9', stopOpacity: 0.3 }} />
+                <stop offset="100%" style={{ stopColor: '#FF8DA1', stopOpacity: 0.3 }} />
               </linearGradient>
             </defs>
             <path
@@ -135,17 +135,17 @@ const Home = () => {
                   )}
 
                   {/* Lesson Node Card */}
-                  <Card
+                   <Card
                     className={`p-6 rounded-2xl border-4 transition-all duration-300 relative ${
                       lesson.locked
                         ? "opacity-60 grayscale border-muted bg-card/50"
-                        : "border-primary shadow-duolingo-lg hover:scale-105 cursor-pointer bg-white animate-pulse-glow"
+                        : "border-primary shadow-duolingo-lg hover:scale-105 cursor-pointer bg-card animate-pulse-glow"
                     }`}
                     onClick={() => !lesson.locked && navigate(`/lesson/${lesson.id}`)}
                   >
                     {/* Completion Badge */}
                     {!lesson.locked && lesson.progress === 100 && (
-                      <Badge className="absolute -top-3 -right-3 bg-secondary text-white border-0 rounded-full px-3 py-1 shadow-duolingo-md">
+                      <Badge className="absolute -top-3 -right-3 bg-success text-success-foreground border-0 rounded-full px-3 py-1 shadow-duolingo-md">
                         ⭐ مكتمل
                       </Badge>
                     )}

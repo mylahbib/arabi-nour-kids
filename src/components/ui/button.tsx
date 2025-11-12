@@ -9,15 +9,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-md hover:shadow-lg",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:scale-105 active:scale-95 shadow-md",
-        outline: "border-2 border-primary bg-background text-primary hover:bg-primary hover:text-primary-foreground hover:scale-105 active:scale-95",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:scale-105 active:scale-95 shadow-md",
-        ghost: "hover:bg-accent hover:text-accent-foreground hover:scale-105 active:scale-95",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-duolingo-md hover:shadow-duolingo-lg",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:scale-105 active:scale-95 shadow-duolingo-md",
+        outline: "border-2 border-primary bg-background text-primary hover:bg-primary/10 hover:scale-105 active:scale-95",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:scale-105 active:scale-95 shadow-duolingo-md",
+        ghost: "hover:bg-accent/20 hover:text-accent-foreground hover:scale-105 active:scale-95",
         link: "text-primary underline-offset-4 hover:underline",
-        kid: "bg-gradient-to-br from-primary to-primary-glow text-primary-foreground hover:scale-110 active:scale-95 shadow-lg hover:shadow-xl animate-bounce-soft",
-        success: "bg-gradient-to-br from-primary via-primary to-emerald-500 text-primary-foreground hover:scale-110 active:scale-95 shadow-lg glow-success",
-        accent: "bg-accent text-accent-foreground hover:bg-accent/80 hover:scale-105 active:scale-95 shadow-md",
+        kid: "bg-accent text-accent-foreground hover:scale-110 active:scale-95 shadow-duolingo-lg hover:shadow-duolingo-xl",
+        success: "bg-success text-success-foreground hover:bg-success/90 hover:scale-105 active:scale-95 shadow-duolingo-md",
+        accent: "bg-accent text-accent-foreground hover:bg-accent/90 hover:scale-105 active:scale-95 shadow-duolingo-md",
       },
       size: {
         default: "h-12 px-6 py-3 text-base",
