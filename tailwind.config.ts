@@ -61,6 +61,11 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        sky: "hsl(var(--sky-blue))",
+        grass: "hsl(var(--grass-green))",
+        path: "hsl(var(--path-yellow))",
+        coral: "hsl(var(--coral))",
+        "light-blue": "hsl(var(--light-blue))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -109,6 +114,10 @@ export default {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        "fade-in": {
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -117,6 +126,7 @@ export default {
         "celebrate": "celebrate 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
         "float": "float 3s ease-in-out infinite",
         "shimmer": "shimmer 2s linear infinite",
+        "fade-in": "fade-in 0.3s ease-out",
       },
     },
   },
