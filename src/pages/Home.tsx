@@ -118,227 +118,260 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden" style={{
-      background: 'linear-gradient(180deg, #8B6F47 0%, #6B4423 50%, #5E382A 100%)'
-    }}>
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-sky via-sky/50 to-white">
+      {/* Decorative Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Sun */}
+        <div className="absolute top-4 left-8 w-20 h-20 rounded-full bg-warning flex items-center justify-center animate-float">
+          <span className="text-4xl">😊</span>
+        </div>
+        
+        {/* Moon */}
+        <div className="absolute top-20 right-8 w-16 h-16 rounded-full bg-warning/80 flex items-center justify-center animate-float" style={{ animationDelay: '1s' }}>
+          <span className="text-3xl">🌙</span>
+        </div>
+
+        {/* Clouds */}
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute bg-white/90 rounded-full"
+            style={{
+              width: `${80 + i * 20}px`,
+              height: `${40 + i * 10}px`,
+              top: `${100 + i * 80}px`,
+              left: `${i * 30}%`,
+              animation: `float ${3 + i}s ease-in-out infinite`,
+              animationDelay: `${i * 0.5}s`
+            }}
+          />
+        ))}
+
+        {/* Bottom Grass Layer */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-grass rounded-t-[50%]" />
+        
+        {/* Trees */}
+        {[0, 1, 2].map((i) => (
+          <div
+            key={i}
+            className="absolute bottom-16"
+            style={{ left: `${20 + i * 30}%` }}
+          >
+            <div className="w-16 h-20 bg-grass rounded-full opacity-80" />
+          </div>
+        ))}
+      </div>
+
       {/* Top Navigation */}
       <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between p-4">
         <Button
           variant="ghost"
           size="icon"
           onClick={() => navigate("/progress")}
-          className="w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-lg"
+          className="w-14 h-14 rounded-2xl bg-white/90 hover:bg-white shadow-lg"
         >
-          <ArrowLeft className="w-5 h-5 text-secondary" />
+          <span className="text-3xl">🏠</span>
         </Button>
         
-        <div className="flex gap-2">
-          <div className="flex items-center gap-2 bg-white/90 rounded-full px-3 py-1.5 shadow-lg">
-            <span className="text-lg">🔥</span>
-            <span className="font-bold text-warning text-sm">{user.streak}</span>
+        <div className="flex items-center gap-3 bg-white/95 rounded-full px-6 py-2 shadow-lg">
+          <div className="flex items-center gap-1.5">
+            <span className="text-2xl">🔥</span>
+            <span className="font-bold text-warning text-lg">{user.streak}</span>
           </div>
-          <div className="flex items-center gap-2 bg-white/90 rounded-full px-3 py-1.5 shadow-lg">
-            <span className="text-lg">⭐</span>
-            <span className="font-bold text-warning text-sm">{user.xp}</span>
+          <div className="w-px h-6 bg-border" />
+          <div className="flex items-center gap-1.5">
+            <span className="text-2xl">⭐</span>
+            <span className="font-bold text-warning text-lg">{user.xp}</span>
+          </div>
+          <div className="w-px h-6 bg-border" />
+          <div className="flex items-center gap-1.5">
+            <span className="text-2xl">🧩</span>
+            <span className="font-bold text-success text-lg">7</span>
           </div>
         </div>
         
         <Button
           variant="ghost"
           size="icon"
-          className="w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-lg"
+          className="w-14 h-14 rounded-2xl bg-white/90 hover:bg-white shadow-lg"
         >
-          <Menu className="w-5 h-5 text-secondary" />
+          <span className="text-3xl">⚙️</span>
         </Button>
       </div>
 
       {/* Header with Mascot */}
-      <div className="relative pt-20 pb-6 px-4">
+      <div className="relative pt-24 pb-8 px-4 z-10">
         <div className="max-w-md mx-auto text-center">
           <div className="inline-block mb-4">
-            <div className="w-28 h-28 rounded-full bg-primary flex items-center justify-center shadow-2xl border-4 border-warning">
+            <div className="w-32 h-32 rounded-full bg-light-blue flex items-center justify-center shadow-2xl border-8 border-warning">
               <img 
                 src={mascotReading} 
                 alt="Mascot" 
-                className="w-24 h-24 object-contain drop-shadow-lg"
+                className="w-28 h-28 object-contain"
               />
             </div>
           </div>
-          <h1 className="text-4xl font-heading font-bold text-white mb-2 drop-shadow-lg">رحلة التعلم</h1>
-          <p className="text-base text-white/90 font-body drop-shadow">استمتع بالتعلم خطوة بخطوة</p>
         </div>
       </div>
 
-      {/* Units Journey */}
-      <div className="max-w-md mx-auto px-4 pb-20">
-        <div className="space-y-6">
+      {/* Units Journey Path */}
+      <div className="max-w-md mx-auto px-4 pb-32 relative z-10">
+        {/* Winding Path SVG */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ top: '-50px' }}>
+          <path
+            d="M 50 100 Q 150 150, 250 200 T 150 350 T 250 500 T 150 650 T 250 800"
+            fill="none"
+            stroke="hsl(var(--path-yellow))"
+            strokeWidth="40"
+            strokeLinecap="round"
+            opacity="0.8"
+          />
+        </svg>
+
+        <div className="space-y-32 relative">
           {units.map((unit, unitIndex) => {
             const isExpanded = expandedUnit === unit.id;
             const isLocked = unit.progress === 0 && unitIndex > 0;
             const completedCourses = unit.courses.filter(c => c.completed).length;
             const totalCourses = unit.courses.length;
+            
+            // Alternate positioning: left, center, right
+            const positions = ['left', 'center', 'right', 'center'];
+            const position = positions[unitIndex % 4];
+            const positionClass = 
+              position === 'left' ? 'mr-auto' : 
+              position === 'right' ? 'ml-auto' : 
+              'mx-auto';
+
+            // Alternate colors for units
+            const colors = [
+              'bg-light-blue border-white',
+              'bg-coral border-white',
+              'bg-warning border-white',
+              'bg-success border-white'
+            ];
+            const colorClass = colors[unitIndex % 4];
 
             return (
-              <div key={unit.id} className="relative">
-                {/* Connecting Path */}
-                {unitIndex < units.length - 1 && (
-                  <div className="absolute left-8 top-full w-1 h-6 bg-gradient-to-b from-primary/30 to-transparent" />
-                )}
-
+              <div key={unit.id} className={`relative w-fit ${positionClass}`}>
                 {/* Unit Node */}
                 <div
                   onClick={() => !isLocked && setExpandedUnit(isExpanded ? null : unit.id)}
-                  className={`
-                    relative bg-white/95 rounded-3xl p-5 shadow-2xl border-4 cursor-pointer
-                    transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]
-                    ${isLocked 
-                      ? 'border-text/20 opacity-60 cursor-not-allowed' 
-                      : 'border-warning hover:border-accent'
-                    }
-                    ${isExpanded ? 'ring-4 ring-accent/50' : ''}
-                  `}
+                  className="relative cursor-pointer"
                 >
-                  {/* Unit Header */}
-                  <div className="flex items-start gap-4">
-                    {/* Unit Icon */}
-                    <div className={`
-                      flex-shrink-0 w-20 h-20 rounded-full flex items-center justify-center text-4xl
-                      shadow-xl transition-transform duration-300 border-4
-                      ${isLocked 
-                        ? 'bg-text/10 border-text/20' 
-                        : 'bg-gradient-to-br from-warning to-accent hover:scale-110 border-white'
-                      }
-                    `}>
-                      {isLocked ? "🔒" : unit.icon}
-                    </div>
-
-                    {/* Unit Info */}
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-xl font-heading font-bold text-secondary mb-2 leading-tight">
-                        {unit.title}
-                      </h3>
-                      <div className="flex items-center gap-2 text-sm text-secondary/70 mb-3">
-                        <span className="font-bold">{completedCourses}/{totalCourses} دروس</span>
-                        <span>•</span>
-                        <span className="font-bold">{unit.progress}%</span>
-                      </div>
-                      
-                      {/* Progress Bar */}
-                      <div className="w-full h-3 bg-secondary/10 rounded-full overflow-hidden shadow-inner">
-                        <div 
-                          className="h-full bg-gradient-to-r from-success to-success/80 transition-all duration-500 rounded-full shadow-md"
-                          style={{ width: `${unit.progress}%` }}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Expand Icon */}
-                    {!isLocked && (
-                      <div className={`
-                        flex-shrink-0 w-10 h-10 rounded-full bg-warning/20 flex items-center justify-center
-                        transition-transform duration-300 shadow-md
-                        ${isExpanded ? 'rotate-180' : ''}
-                      `}>
-                        <span className="text-warning text-lg font-bold">▼</span>
-                      </div>
-                    )}
+                  {/* Circular Unit Button */}
+                  <div className={`
+                    w-32 h-32 rounded-full flex items-center justify-center text-6xl
+                    shadow-2xl transition-all duration-300 hover:scale-110
+                    ${isLocked ? 'bg-muted border-4 border-border opacity-60' : `${colorClass} border-8`}
+                  `}>
+                    {isLocked ? "🔒" : unit.icon}
                   </div>
 
-                  {/* Expanded Courses */}
-                  {isExpanded && !isLocked && (
-                    <div className="mt-6 space-y-2 animate-fade-in">
-                      {unit.courses.map((course, courseIndex) => (
-                        <div key={course.id} className="flex items-center gap-2">
-                          {/* Course Button with Letter */}
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              if (!course.locked) {
-                                navigate(`/lesson/${course.id}`);
-                              }
-                            }}
-                            disabled={course.locked}
-                            className={`
-                              flex-1 flex items-center justify-between gap-3 p-4 rounded-2xl
-                              transition-all duration-300 shadow-lg
-                              ${course.locked
-                                ? 'bg-gray-200 cursor-not-allowed opacity-50'
-                                : course.completed
-                                  ? 'bg-gradient-to-br from-success to-success/80 hover:scale-[1.03] cursor-pointer border-4 border-white'
-                                  : 'bg-gradient-to-br from-warning to-accent hover:scale-[1.03] cursor-pointer border-4 border-white'
-                              }
-                            `}
-                          >
-                            {/* Letter Icon */}
-                            <div className={`
-                              flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-3xl font-bold
-                              shadow-lg border-3
-                              ${course.locked
-                                ? 'bg-gray-300 border-gray-400 text-gray-500'
-                                : course.completed
-                                  ? 'bg-white text-success border-success'
-                                  : 'bg-white text-secondary border-warning'
-                              }
-                            `}>
-                              {course.locked ? "🔒" : course.completed ? "✓" : course.icon}
-                            </div>
-
-                            {/* Course Title */}
-                            <div className="flex-1 text-right">
-                              <div className="text-base font-heading font-bold text-white drop-shadow-md">
-                                {course.title}
-                              </div>
-                            </div>
-
-                            {/* Play Icon */}
-                            {!course.locked && !course.completed && (
-                              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-md">
-                                <span className="text-primary text-lg">▶️</span>
-                              </div>
-                            )}
-
-                            {/* Stars for completed */}
-                            {course.completed && (
-                              <div className="flex gap-1">
-                                {[1, 2, 3].map((star) => (
-                                  <span key={star} className="text-white text-lg drop-shadow-lg">⭐</span>
-                                ))}
-                              </div>
-                            )}
-                          </button>
-
-                          {/* Exercise Icon */}
-                          {!course.locked && (
-                            <button
-                              className={`
-                                flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl
-                                transition-all duration-300 hover:scale-110 shadow-lg border-4
-                                ${course.completed
-                                  ? 'bg-gradient-to-br from-accent to-accent/80 border-white'
-                                  : 'bg-white/80 border-gray-300'
-                                }
-                              `}
-                            >
-                              🧩
-                            </button>
-                          )}
-                        </div>
-                      ))}
+                  {/* Unit Label */}
+                  <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 w-40">
+                    <div className="bg-white rounded-3xl px-4 py-3 shadow-xl">
+                      <h3 className="text-base font-heading font-bold text-secondary text-center leading-tight">
+                        {unit.title}
+                      </h3>
                     </div>
-                  )}
+                  </div>
 
-                  {/* Unit Celebration for Completed */}
+                  {/* Completion Badge */}
                   {unit.progress === 100 && (
-                    <div className="absolute -top-4 -right-4 animate-bounce">
-                      <div className="bg-gradient-to-br from-warning to-accent rounded-full w-12 h-12 flex items-center justify-center shadow-2xl text-xl border-4 border-white">
+                    <div className="absolute -top-2 -right-2 animate-bounce">
+                      <div className="bg-warning rounded-full w-12 h-12 flex items-center justify-center shadow-2xl text-2xl border-4 border-white">
                         🎉
                       </div>
                     </div>
                   )}
                 </div>
+
+                {/* Expanded Courses */}
+                {isExpanded && !isLocked && (
+                  <div className="mt-20 space-y-3 animate-fade-in">
+                    {unit.courses.map((course) => (
+                      <div key={course.id} className="flex items-center gap-2">
+                        {/* Course Button */}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (!course.locked) {
+                              navigate(`/lesson/${course.id}`);
+                            }
+                          }}
+                          disabled={course.locked}
+                          className={`
+                            flex-1 flex items-center justify-between gap-3 p-4 rounded-3xl
+                            transition-all duration-300 shadow-lg
+                            ${course.locked
+                              ? 'bg-muted cursor-not-allowed opacity-50'
+                              : course.completed
+                                ? 'bg-success hover:scale-[1.03] cursor-pointer border-4 border-white'
+                                : 'bg-warning hover:scale-[1.03] cursor-pointer border-4 border-white'
+                            }
+                          `}
+                        >
+                          {/* Letter/Icon */}
+                          <div className={`
+                            flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-3xl font-bold
+                            shadow-lg border-4
+                            ${course.locked
+                              ? 'bg-muted-foreground/20 border-border text-muted-foreground'
+                              : 'bg-white text-secondary border-white'
+                            }
+                          `}>
+                            {course.locked ? "🔒" : course.completed ? "✓" : course.icon}
+                          </div>
+
+                          {/* Course Title */}
+                          <div className="flex-1 text-right">
+                            <div className="text-base font-heading font-bold text-white drop-shadow-md">
+                              {course.title}
+                            </div>
+                          </div>
+
+                          {/* Stars for completed */}
+                          {course.completed && (
+                            <div className="flex gap-1">
+                              {[1, 2, 3].map((star) => (
+                                <span key={star} className="text-white text-lg drop-shadow-lg">⭐</span>
+                              ))}
+                            </div>
+                          )}
+                        </button>
+
+                        {/* Exercise Icon */}
+                        {!course.locked && (
+                          <button
+                            className={`
+                              flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl
+                              transition-all duration-300 hover:scale-110 shadow-lg border-4
+                              ${course.completed
+                                ? 'bg-accent border-white'
+                                : 'bg-white/90 border-border'
+                              }
+                            `}
+                          >
+                            🧩
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             );
           })}
+        </div>
+
+        {/* Mascot at bottom */}
+        <div className="absolute bottom-10 left-8 z-20 animate-float" style={{ animationDelay: '0.5s' }}>
+          <img 
+            src={mascotReading} 
+            alt="Learning Mascot" 
+            className="w-32 h-32 object-contain drop-shadow-2xl"
+          />
         </div>
       </div>
     </div>
