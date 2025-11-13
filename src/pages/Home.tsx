@@ -44,15 +44,21 @@ const Home = () => {
 
   if (!user) return null;
 
+  const arabicLetters = ["ا", "ب", "ت", "ث", "ج", "ح", "خ", "د", "ذ", "ر", "ز", "س", "ش", "ص", "ض", "ط", "ظ", "ع", "غ", "ف", "ق", "ك", "ل", "م", "ن", "هـ", "و", "ي", "ء"];
+  
   const units: Unit[] = [
     {
       id: 1,
       title: "الْحُرُوفُ الْعَرَبِيَّةُ",
       icon: "📘",
-      progress: 100,
-      courses: [
-        { id: 1, title: "29 حرفًا عربيًا (الأبجدية)", icon: "🔤", completed: true, locked: false }
-      ]
+      progress: 10,
+      courses: arabicLetters.map((letter, index) => ({
+        id: index + 1,
+        title: `حرف ${letter}`,
+        icon: letter,
+        completed: index < 3,
+        locked: index > 2
+      }))
     },
     {
       id: 2,
@@ -112,24 +118,26 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-background">
+    <div className="min-h-screen relative overflow-hidden" style={{
+      background: 'linear-gradient(180deg, #8B6F47 0%, #6B4423 50%, #5E382A 100%)'
+    }}>
       {/* Top Navigation */}
-      <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between p-4 bg-gradient-to-b from-white/80 to-transparent backdrop-blur-sm">
+      <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between p-4">
         <Button
           variant="ghost"
           size="icon"
           onClick={() => navigate("/progress")}
-          className="w-12 h-12 rounded-full bg-surface hover:bg-surface/80 shadow-md"
+          className="w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-lg"
         >
-          <ArrowLeft className="w-5 h-5 text-primary" />
+          <ArrowLeft className="w-5 h-5 text-secondary" />
         </Button>
         
         <div className="flex gap-2">
-          <div className="flex items-center gap-2 bg-surface rounded-full px-3 py-1.5 shadow-md border border-primary/10">
+          <div className="flex items-center gap-2 bg-white/90 rounded-full px-3 py-1.5 shadow-lg">
             <span className="text-lg">🔥</span>
             <span className="font-bold text-warning text-sm">{user.streak}</span>
           </div>
-          <div className="flex items-center gap-2 bg-surface rounded-full px-3 py-1.5 shadow-md border border-primary/10">
+          <div className="flex items-center gap-2 bg-white/90 rounded-full px-3 py-1.5 shadow-lg">
             <span className="text-lg">⭐</span>
             <span className="font-bold text-warning text-sm">{user.xp}</span>
           </div>
@@ -138,9 +146,9 @@ const Home = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="w-12 h-12 rounded-full bg-surface hover:bg-surface/80 shadow-md"
+          className="w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-lg"
         >
-          <Menu className="w-5 h-5 text-primary" />
+          <Menu className="w-5 h-5 text-secondary" />
         </Button>
       </div>
 
@@ -148,16 +156,16 @@ const Home = () => {
       <div className="relative pt-20 pb-6 px-4">
         <div className="max-w-md mx-auto text-center">
           <div className="inline-block mb-4">
-            <div className="w-24 h-24 rounded-full bg-primary flex items-center justify-center shadow-xl border-4 border-white">
+            <div className="w-28 h-28 rounded-full bg-primary flex items-center justify-center shadow-2xl border-4 border-warning">
               <img 
                 src={mascotReading} 
                 alt="Mascot" 
-                className="w-20 h-20 object-contain drop-shadow-lg"
+                className="w-24 h-24 object-contain drop-shadow-lg"
               />
             </div>
           </div>
-          <h1 className="text-3xl font-heading font-bold text-text mb-2">رحلة التعلم</h1>
-          <p className="text-sm text-text/60 font-body">استمتع بالتعلم خطوة بخطوة</p>
+          <h1 className="text-4xl font-heading font-bold text-white mb-2 drop-shadow-lg">رحلة التعلم</h1>
+          <p className="text-base text-white/90 font-body drop-shadow">استمتع بالتعلم خطوة بخطوة</p>
         </div>
       </div>
 
@@ -181,24 +189,24 @@ const Home = () => {
                 <div
                   onClick={() => !isLocked && setExpandedUnit(isExpanded ? null : unit.id)}
                   className={`
-                    relative bg-surface rounded-3xl p-5 shadow-lg border-2 cursor-pointer
-                    transition-all duration-300 hover:shadow-xl
+                    relative bg-white/95 rounded-3xl p-5 shadow-2xl border-4 cursor-pointer
+                    transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]
                     ${isLocked 
                       ? 'border-text/20 opacity-60 cursor-not-allowed' 
-                      : 'border-primary/20 hover:border-primary/40'
+                      : 'border-warning hover:border-accent'
                     }
-                    ${isExpanded ? 'ring-2 ring-primary/30' : ''}
+                    ${isExpanded ? 'ring-4 ring-accent/50' : ''}
                   `}
                 >
                   {/* Unit Header */}
                   <div className="flex items-start gap-4">
                     {/* Unit Icon */}
                     <div className={`
-                      flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center text-3xl
-                      shadow-md transition-transform duration-300
+                      flex-shrink-0 w-20 h-20 rounded-full flex items-center justify-center text-4xl
+                      shadow-xl transition-transform duration-300 border-4
                       ${isLocked 
-                        ? 'bg-text/10' 
-                        : 'bg-gradient-to-br from-primary to-primary/80 hover:scale-105'
+                        ? 'bg-text/10 border-text/20' 
+                        : 'bg-gradient-to-br from-warning to-accent hover:scale-110 border-white'
                       }
                     `}>
                       {isLocked ? "🔒" : unit.icon}
@@ -206,19 +214,19 @@ const Home = () => {
 
                     {/* Unit Info */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-heading font-bold text-text mb-1 leading-tight">
+                      <h3 className="text-xl font-heading font-bold text-secondary mb-2 leading-tight">
                         {unit.title}
                       </h3>
-                      <div className="flex items-center gap-2 text-xs text-text/60 mb-2">
-                        <span>{completedCourses}/{totalCourses} دروس</span>
+                      <div className="flex items-center gap-2 text-sm text-secondary/70 mb-3">
+                        <span className="font-bold">{completedCourses}/{totalCourses} دروس</span>
                         <span>•</span>
-                        <span>{unit.progress}%</span>
+                        <span className="font-bold">{unit.progress}%</span>
                       </div>
                       
                       {/* Progress Bar */}
-                      <div className="w-full h-2 bg-text/10 rounded-full overflow-hidden">
+                      <div className="w-full h-3 bg-secondary/10 rounded-full overflow-hidden shadow-inner">
                         <div 
-                          className="h-full bg-gradient-to-r from-success to-success/80 transition-all duration-500 rounded-full"
+                          className="h-full bg-gradient-to-r from-success to-success/80 transition-all duration-500 rounded-full shadow-md"
                           style={{ width: `${unit.progress}%` }}
                         />
                       </div>
@@ -227,21 +235,21 @@ const Home = () => {
                     {/* Expand Icon */}
                     {!isLocked && (
                       <div className={`
-                        flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center
-                        transition-transform duration-300
+                        flex-shrink-0 w-10 h-10 rounded-full bg-warning/20 flex items-center justify-center
+                        transition-transform duration-300 shadow-md
                         ${isExpanded ? 'rotate-180' : ''}
                       `}>
-                        <span className="text-primary text-sm">▼</span>
+                        <span className="text-warning text-lg font-bold">▼</span>
                       </div>
                     )}
                   </div>
 
                   {/* Expanded Courses */}
                   {isExpanded && !isLocked && (
-                    <div className="mt-6 space-y-3 animate-fade-in">
+                    <div className="mt-6 space-y-2 animate-fade-in">
                       {unit.courses.map((course, courseIndex) => (
-                        <div key={course.id}>
-                          {/* Course Card */}
+                        <div key={course.id} className="flex items-center gap-2">
+                          {/* Course Button with Letter */}
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
@@ -251,58 +259,68 @@ const Home = () => {
                             }}
                             disabled={course.locked}
                             className={`
-                              w-full flex items-center gap-3 p-3 rounded-2xl
-                              transition-all duration-300 text-right
+                              flex-1 flex items-center justify-between gap-3 p-4 rounded-2xl
+                              transition-all duration-300 shadow-lg
                               ${course.locked
-                                ? 'bg-text/5 cursor-not-allowed opacity-50'
+                                ? 'bg-gray-200 cursor-not-allowed opacity-50'
                                 : course.completed
-                                  ? 'bg-success/10 hover:bg-success/20 cursor-pointer hover:scale-[1.02]'
-                                  : 'bg-primary/10 hover:bg-primary/20 cursor-pointer hover:scale-[1.02]'
+                                  ? 'bg-gradient-to-br from-success to-success/80 hover:scale-[1.03] cursor-pointer border-4 border-white'
+                                  : 'bg-gradient-to-br from-warning to-accent hover:scale-[1.03] cursor-pointer border-4 border-white'
                               }
                             `}
                           >
-                            {/* Course Icon */}
+                            {/* Letter Icon */}
                             <div className={`
-                              flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-xl
+                              flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-3xl font-bold
+                              shadow-lg border-3
                               ${course.locked
-                                ? 'bg-text/10'
+                                ? 'bg-gray-300 border-gray-400 text-gray-500'
                                 : course.completed
-                                  ? 'bg-success shadow-md'
-                                  : 'bg-primary shadow-md'
+                                  ? 'bg-white text-success border-success'
+                                  : 'bg-white text-secondary border-warning'
                               }
                             `}>
                               {course.locked ? "🔒" : course.completed ? "✓" : course.icon}
                             </div>
 
                             {/* Course Title */}
-                            <div className="flex-1 text-sm font-body font-semibold text-text">
-                              {course.title}
+                            <div className="flex-1 text-right">
+                              <div className="text-base font-heading font-bold text-white drop-shadow-md">
+                                {course.title}
+                              </div>
                             </div>
 
-                            {/* Completion Stars */}
+                            {/* Play Icon */}
+                            {!course.locked && !course.completed && (
+                              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-md">
+                                <span className="text-primary text-lg">▶️</span>
+                              </div>
+                            )}
+
+                            {/* Stars for completed */}
                             {course.completed && (
                               <div className="flex gap-1">
                                 {[1, 2, 3].map((star) => (
-                                  <span key={star} className="text-warning text-xs">⭐</span>
+                                  <span key={star} className="text-white text-lg drop-shadow-lg">⭐</span>
                                 ))}
                               </div>
                             )}
                           </button>
 
-                          {/* Exercise Icon after Course */}
+                          {/* Exercise Icon */}
                           {!course.locked && (
-                            <div className="flex justify-center my-2">
-                              <div className={`
-                                w-8 h-8 rounded-full flex items-center justify-center text-sm
-                                transition-all duration-300 hover:scale-110
+                            <button
+                              className={`
+                                flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl
+                                transition-all duration-300 hover:scale-110 shadow-lg border-4
                                 ${course.completed
-                                  ? 'bg-accent shadow-md'
-                                  : 'bg-text/10'
+                                  ? 'bg-gradient-to-br from-accent to-accent/80 border-white'
+                                  : 'bg-white/80 border-gray-300'
                                 }
-                              `}>
-                                {course.completed ? "🎯" : "🧩"}
-                              </div>
-                            </div>
+                              `}
+                            >
+                              🧩
+                            </button>
                           )}
                         </div>
                       ))}
@@ -311,8 +329,8 @@ const Home = () => {
 
                   {/* Unit Celebration for Completed */}
                   {unit.progress === 100 && (
-                    <div className="absolute -top-3 -right-3 animate-bounce">
-                      <div className="bg-warning rounded-full w-8 h-8 flex items-center justify-center shadow-lg text-sm">
+                    <div className="absolute -top-4 -right-4 animate-bounce">
+                      <div className="bg-gradient-to-br from-warning to-accent rounded-full w-12 h-12 flex items-center justify-center shadow-2xl text-xl border-4 border-white">
                         🎉
                       </div>
                     </div>
