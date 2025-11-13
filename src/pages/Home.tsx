@@ -12,9 +12,26 @@ interface UserData {
   streak: number;
 }
 
+interface Course {
+  id: number;
+  title: string;
+  icon: string;
+  completed: boolean;
+  locked: boolean;
+}
+
+interface Unit {
+  id: number;
+  title: string;
+  icon: string;
+  courses: Course[];
+  progress: number;
+}
+
 const Home = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<UserData | null>(null);
+  const [expandedUnit, setExpandedUnit] = useState<number | null>(1);
 
   useEffect(() => {
     const userData = localStorage.getItem("khutwa_user");
@@ -27,167 +44,284 @@ const Home = () => {
 
   if (!user) return null;
 
-  const lessons = [
-    { id: 1, title: "الحروف", icon: "🔤", locked: false, progress: 100, position: "center" },
-    { id: 2, title: "المقاطع", icon: "🎵", locked: false, progress: 100, position: "right" },
-    { id: 3, title: "الكلمات", icon: "📝", locked: false, progress: 50, position: "left" },
-    { id: 4, title: "الجمل", icon: "💬", locked: true, progress: 0, position: "right" },
-    { id: 5, title: "القراءة", icon: "📖", locked: true, progress: 0, position: "center" },
+  const units: Unit[] = [
+    {
+      id: 1,
+      title: "الْحُرُوفُ الْعَرَبِيَّةُ",
+      icon: "📘",
+      progress: 100,
+      courses: [
+        { id: 1, title: "29 حرفًا عربيًا (الأبجدية)", icon: "🔤", completed: true, locked: false }
+      ]
+    },
+    {
+      id: 2,
+      title: "الْحَرَكَاتُ وَالتَّشْكِيل",
+      icon: "✍️",
+      progress: 43,
+      courses: [
+        { id: 2, title: "تَشْكِيلُ الْحُرُوفِ بِالْفَتْحَةِ", icon: "📖", completed: true, locked: false },
+        { id: 3, title: "تَشْكِيلُ الْحُرُوفِ بِالْكَسْرَةِ", icon: "📖", completed: true, locked: false },
+        { id: 4, title: "تَشْكِيلُ الْحُرُوفِ بِالضَّمَّةِ", icon: "📖", completed: true, locked: false },
+        { id: 5, title: "السُّكُون", icon: "📖", completed: false, locked: false },
+        { id: 6, title: "الْفَتْحَةُ مَعَ السُّكُون", icon: "📖", completed: false, locked: true },
+        { id: 7, title: "الْكَسْرَةُ مَعَ السُّكُون", icon: "📖", completed: false, locked: true },
+        { id: 8, title: "الضَّمَّةُ مَعَ السُّكُون", icon: "📖", completed: false, locked: true }
+      ]
+    },
+    {
+      id: 3,
+      title: "الْمَدُّ وَالتَّشْدِيد",
+      icon: "⭐",
+      progress: 0,
+      courses: [
+        { id: 9, title: "مَدُّ الْحُرُوفِ بِالْأَلِفِ", icon: "📖", completed: false, locked: true },
+        { id: 10, title: "مَدُّ الْحُرُوفِ بِالْيَاءِ", icon: "📖", completed: false, locked: true },
+        { id: 11, title: "مَدُّ الْحُرُوفِ بِالْوَاوِ", icon: "📖", completed: false, locked: true },
+        { id: 12, title: "اللَّامُ الْقَمَرِيَّةُ وَالشَّدَّةُ", icon: "📖", completed: false, locked: true },
+        { id: 13, title: "اللَّامُ الْقَمَرِيَّةُ", icon: "📖", completed: false, locked: true },
+        { id: 14, title: "الشَّدَّةُ مَعَ الْفَتْحَةِ", icon: "📖", completed: false, locked: true },
+        { id: 15, title: "الشَّدَّةُ مَعَ الْكَسْرَةِ", icon: "📖", completed: false, locked: true },
+        { id: 16, title: "الشَّدَّةُ مَعَ الضَّمَّةِ", icon: "📖", completed: false, locked: true },
+        { id: 17, title: "التَّنْوِينُ وَاللَّامُ الشَّمْسِيَّةُ", icon: "📖", completed: false, locked: true },
+        { id: 18, title: "الْفَتْحَتَانِ", icon: "📖", completed: false, locked: true },
+        { id: 19, title: "الْكَسْرَتَانِ", icon: "📖", completed: false, locked: true },
+        { id: 20, title: "الضَّمَّتَانِ", icon: "📖", completed: false, locked: true },
+        { id: 21, title: "اللَّامُ الشَّمْسِيَّةُ", icon: "📖", completed: false, locked: true }
+      ]
+    },
+    {
+      id: 4,
+      title: "آدَابُ الْمُسْلِمِ الصَّغِيرِ",
+      icon: "🧠",
+      progress: 0,
+      courses: [
+        { id: 22, title: "التَّشَهُّدُ", icon: "📖", completed: false, locked: true },
+        { id: 23, title: "آدَابُ الْقِيَامِ", icon: "📖", completed: false, locked: true },
+        { id: 24, title: "آدَابُ الطَّعَامِ", icon: "📖", completed: false, locked: true },
+        { id: 25, title: "آدَابُ الْمَجَالِسِ", icon: "📖", completed: false, locked: true },
+        { id: 26, title: "آدَابُ الْمَسَاجِدِ", icon: "📖", completed: false, locked: true },
+        { id: 27, title: "آدَابُ تِلَاوَةِ الْقُرْآنِ", icon: "📖", completed: false, locked: true },
+        { id: 28, title: "الْآدَابُ مَعَ الْوَالِدَيْنِ", icon: "📖", completed: false, locked: true },
+        { id: 29, title: "آدَابُ النَّوْمِ", icon: "📖", completed: false, locked: true },
+        { id: 30, title: "آدَابُ الدِّرَاسَةِ", icon: "📖", completed: false, locked: true },
+        { id: 31, title: "آدَابُ الطَّرِيقِ", icon: "📖", completed: false, locked: true },
+        { id: 32, title: "أَحَادِيثُ نَبَوِيَّةٌ", icon: "📖", completed: false, locked: true }
+      ]
+    }
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden" style={{
-      background: 'linear-gradient(180deg, #3E2723 0%, #4E342E 50%, #5D4037 100%)',
-      backgroundImage: `
-        repeating-linear-gradient(90deg, rgba(0,0,0,0.1) 0px, transparent 2px, transparent 50px, rgba(0,0,0,0.1) 52px),
-        repeating-linear-gradient(0deg, rgba(0,0,0,0.1) 0px, transparent 2px, transparent 80px, rgba(0,0,0,0.1) 82px)
-      `
-    }}>
+    <div className="min-h-screen relative overflow-hidden bg-background">
       {/* Top Navigation */}
-      <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between p-4">
+      <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between p-4 bg-gradient-to-b from-white/80 to-transparent backdrop-blur-sm">
         <Button
           variant="ghost"
           size="icon"
           onClick={() => navigate("/progress")}
-          className="w-14 h-14 rounded-full bg-white hover:bg-white/90 shadow-lg"
+          className="w-12 h-12 rounded-full bg-surface hover:bg-surface/80 shadow-md"
         >
-          <ArrowLeft className="w-6 h-6 text-primary" />
+          <ArrowLeft className="w-5 h-5 text-primary" />
         </Button>
         
-        <div className="flex gap-3">
-          <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-lg">
-            <span className="text-xl">🔥</span>
-            <span className="font-bold text-primary">{user.streak}</span>
+        <div className="flex gap-2">
+          <div className="flex items-center gap-2 bg-surface rounded-full px-3 py-1.5 shadow-md border border-primary/10">
+            <span className="text-lg">🔥</span>
+            <span className="font-bold text-warning text-sm">{user.streak}</span>
           </div>
-          <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-lg">
-            <span className="text-xl">⭐</span>
-            <span className="font-bold text-warning">{user.xp}</span>
+          <div className="flex items-center gap-2 bg-surface rounded-full px-3 py-1.5 shadow-md border border-primary/10">
+            <span className="text-lg">⭐</span>
+            <span className="font-bold text-warning text-sm">{user.xp}</span>
           </div>
         </div>
         
         <Button
           variant="ghost"
           size="icon"
-          className="w-14 h-14 rounded-full bg-white hover:bg-white/90 shadow-lg"
+          className="w-12 h-12 rounded-full bg-surface hover:bg-surface/80 shadow-md"
         >
-          <Menu className="w-6 h-6 text-primary" />
+          <Menu className="w-5 h-5 text-primary" />
         </Button>
       </div>
 
-      {/* Mascot at Top */}
-      <div className="absolute top-24 left-1/2 -translate-x-1/2 z-20">
-        <div className="relative">
-          <div className="w-28 h-28 rounded-full bg-primary flex items-center justify-center shadow-2xl border-4 border-white">
-            <img 
-              src={mascotReading} 
-              alt="Mascot" 
-              className="w-24 h-24 object-contain drop-shadow-lg"
-            />
+      {/* Header with Mascot */}
+      <div className="relative pt-20 pb-6 px-4">
+        <div className="max-w-md mx-auto text-center">
+          <div className="inline-block mb-4">
+            <div className="w-24 h-24 rounded-full bg-primary flex items-center justify-center shadow-xl border-4 border-white">
+              <img 
+                src={mascotReading} 
+                alt="Mascot" 
+                className="w-20 h-20 object-contain drop-shadow-lg"
+              />
+            </div>
           </div>
+          <h1 className="text-3xl font-heading font-bold text-text mb-2">رحلة التعلم</h1>
+          <p className="text-sm text-text/60 font-body">استمتع بالتعلم خطوة بخطوة</p>
         </div>
       </div>
 
-      {/* Lesson Path */}
-      <div className="max-w-md mx-auto pt-56 pb-20 px-4 relative">
-        {lessons.map((lesson, index) => {
-          const isActive = !lesson.locked;
-          const isCompleted = lesson.progress === 100;
-          const isInProgress = lesson.progress > 0 && lesson.progress < 100;
-          
-          // Calculate horizontal offset based on position
-          const offsetX = 
-            lesson.position === "left" ? -60 :
-            lesson.position === "right" ? 60 : 0;
+      {/* Units Journey */}
+      <div className="max-w-md mx-auto px-4 pb-20">
+        <div className="space-y-6">
+          {units.map((unit, unitIndex) => {
+            const isExpanded = expandedUnit === unit.id;
+            const isLocked = unit.progress === 0 && unitIndex > 0;
+            const completedCourses = unit.courses.filter(c => c.completed).length;
+            const totalCourses = unit.courses.length;
 
-          return (
-            <div key={lesson.id} className="relative flex justify-center mb-4">
-              {/* Connecting Dots */}
-              {index < lessons.length - 1 && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 py-2" style={{ transform: `translateX(${offsetX}px)` }}>
-                  {[...Array(3)].map((_, i) => (
-                    <div 
-                      key={i}
-                      className={`w-3 h-3 rounded-full ${
-                        isActive ? 'bg-warning' : 'bg-gray-600'
-                      }`}
-                    />
-                  ))}
-                </div>
-              )}
-
-              {/* Lesson Node */}
-              <div 
-                className="relative"
-                style={{ transform: `translateX(${offsetX}px)` }}
-              >
-                <button
-                  onClick={() => !lesson.locked && navigate(`/lesson/${lesson.id}`)}
-                  disabled={lesson.locked}
-                  className={`
-                    relative w-32 h-32 rounded-full flex items-center justify-center
-                    transition-all duration-300 font-heading text-5xl
-                    ${lesson.locked 
-                      ? 'bg-gray-600 cursor-not-allowed opacity-60' 
-                      : isCompleted
-                        ? 'bg-gradient-to-b from-warning via-yellow-500 to-orange-600 shadow-2xl cursor-pointer hover:scale-110'
-                        : isInProgress
-                          ? 'bg-gradient-to-b from-yellow-400 via-warning to-yellow-600 shadow-2xl cursor-pointer hover:scale-110'
-                          : 'bg-gradient-to-b from-yellow-300 via-warning to-orange-500 shadow-2xl cursor-pointer hover:scale-110'
-                    }
-                  `}
-                  style={{
-                    boxShadow: lesson.locked 
-                      ? 'inset 0 -8px 0 rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.3)'
-                      : 'inset 0 -12px 0 rgba(180,100,0,0.4), 0 12px 30px rgba(255,180,0,0.5)'
-                  }}
-                >
-                  {/* Inner Circle */}
-                  <div className={`
-                    absolute inset-3 rounded-full flex items-center justify-center
-                    ${lesson.locked 
-                      ? 'bg-gray-700' 
-                      : 'bg-gradient-to-b from-yellow-200 to-yellow-400'
-                    }
-                  `}>
-                    {lesson.locked ? "🔒" : isCompleted ? "✓" : lesson.icon}
-                  </div>
-                  
-                  {/* Small decorative bumps */}
-                  {!lesson.locked && (
-                    <>
-                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-warning" 
-                           style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }} />
-                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-warning" 
-                           style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }} />
-                      <div className="absolute top-1/2 -translate-y-1/2 -left-2 w-4 h-4 rounded-full bg-warning" 
-                           style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }} />
-                      <div className="absolute top-1/2 -translate-y-1/2 -right-2 w-4 h-4 rounded-full bg-warning" 
-                           style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }} />
-                    </>
-                  )}
-                </button>
-
-                {/* Lesson Title Below */}
-                <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                  <p className={`text-sm font-heading font-bold ${
-                    lesson.locked ? 'text-gray-400' : 'text-white'
-                  }`}>
-                    {lesson.title}
-                  </p>
-                </div>
-
-                {/* Completion Stars */}
-                {!lesson.locked && isCompleted && (
-                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex gap-1">
-                    {[1, 2, 3].map((star) => (
-                      <span key={star} className="text-xl drop-shadow-lg">⭐</span>
-                    ))}
-                  </div>
+            return (
+              <div key={unit.id} className="relative">
+                {/* Connecting Path */}
+                {unitIndex < units.length - 1 && (
+                  <div className="absolute left-8 top-full w-1 h-6 bg-gradient-to-b from-primary/30 to-transparent" />
                 )}
+
+                {/* Unit Node */}
+                <div
+                  onClick={() => !isLocked && setExpandedUnit(isExpanded ? null : unit.id)}
+                  className={`
+                    relative bg-surface rounded-3xl p-5 shadow-lg border-2 cursor-pointer
+                    transition-all duration-300 hover:shadow-xl
+                    ${isLocked 
+                      ? 'border-text/20 opacity-60 cursor-not-allowed' 
+                      : 'border-primary/20 hover:border-primary/40'
+                    }
+                    ${isExpanded ? 'ring-2 ring-primary/30' : ''}
+                  `}
+                >
+                  {/* Unit Header */}
+                  <div className="flex items-start gap-4">
+                    {/* Unit Icon */}
+                    <div className={`
+                      flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center text-3xl
+                      shadow-md transition-transform duration-300
+                      ${isLocked 
+                        ? 'bg-text/10' 
+                        : 'bg-gradient-to-br from-primary to-primary/80 hover:scale-105'
+                      }
+                    `}>
+                      {isLocked ? "🔒" : unit.icon}
+                    </div>
+
+                    {/* Unit Info */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg font-heading font-bold text-text mb-1 leading-tight">
+                        {unit.title}
+                      </h3>
+                      <div className="flex items-center gap-2 text-xs text-text/60 mb-2">
+                        <span>{completedCourses}/{totalCourses} دروس</span>
+                        <span>•</span>
+                        <span>{unit.progress}%</span>
+                      </div>
+                      
+                      {/* Progress Bar */}
+                      <div className="w-full h-2 bg-text/10 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-gradient-to-r from-success to-success/80 transition-all duration-500 rounded-full"
+                          style={{ width: `${unit.progress}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Expand Icon */}
+                    {!isLocked && (
+                      <div className={`
+                        flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center
+                        transition-transform duration-300
+                        ${isExpanded ? 'rotate-180' : ''}
+                      `}>
+                        <span className="text-primary text-sm">▼</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Expanded Courses */}
+                  {isExpanded && !isLocked && (
+                    <div className="mt-6 space-y-3 animate-fade-in">
+                      {unit.courses.map((course, courseIndex) => (
+                        <div key={course.id}>
+                          {/* Course Card */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (!course.locked) {
+                                navigate(`/lesson/${course.id}`);
+                              }
+                            }}
+                            disabled={course.locked}
+                            className={`
+                              w-full flex items-center gap-3 p-3 rounded-2xl
+                              transition-all duration-300 text-right
+                              ${course.locked
+                                ? 'bg-text/5 cursor-not-allowed opacity-50'
+                                : course.completed
+                                  ? 'bg-success/10 hover:bg-success/20 cursor-pointer hover:scale-[1.02]'
+                                  : 'bg-primary/10 hover:bg-primary/20 cursor-pointer hover:scale-[1.02]'
+                              }
+                            `}
+                          >
+                            {/* Course Icon */}
+                            <div className={`
+                              flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-xl
+                              ${course.locked
+                                ? 'bg-text/10'
+                                : course.completed
+                                  ? 'bg-success shadow-md'
+                                  : 'bg-primary shadow-md'
+                              }
+                            `}>
+                              {course.locked ? "🔒" : course.completed ? "✓" : course.icon}
+                            </div>
+
+                            {/* Course Title */}
+                            <div className="flex-1 text-sm font-body font-semibold text-text">
+                              {course.title}
+                            </div>
+
+                            {/* Completion Stars */}
+                            {course.completed && (
+                              <div className="flex gap-1">
+                                {[1, 2, 3].map((star) => (
+                                  <span key={star} className="text-warning text-xs">⭐</span>
+                                ))}
+                              </div>
+                            )}
+                          </button>
+
+                          {/* Exercise Icon after Course */}
+                          {!course.locked && (
+                            <div className="flex justify-center my-2">
+                              <div className={`
+                                w-8 h-8 rounded-full flex items-center justify-center text-sm
+                                transition-all duration-300 hover:scale-110
+                                ${course.completed
+                                  ? 'bg-accent shadow-md'
+                                  : 'bg-text/10'
+                                }
+                              `}>
+                                {course.completed ? "🎯" : "🧩"}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Unit Celebration for Completed */}
+                  {unit.progress === 100 && (
+                    <div className="absolute -top-3 -right-3 animate-bounce">
+                      <div className="bg-warning rounded-full w-8 h-8 flex items-center justify-center shadow-lg text-sm">
+                        🎉
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
