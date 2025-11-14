@@ -5,8 +5,10 @@ import { Card } from "@/components/ui/card";
 import { Progress as ProgressBar } from "@/components/ui/progress";
 import { toast } from "sonner";
 
+import rabbitAlif from "@/assets/rabbit-alif.jpg";
+
 const letters = [
-  { letter: "أ", name: "ألف", example: "أسد", image: "🦁" },
+  { letter: "أ", name: "ألف", example: "أسد", image: rabbitAlif },
   { letter: "ب", name: "باء", example: "بطة", image: "🦆" },
   { letter: "ت", name: "تاء", example: "تفاحة", image: "🍎" },
 ];
@@ -101,24 +103,28 @@ const Lesson = () => {
         <Card className="p-8 shadow-2xl border-4 border-primary/20 bg-white/90 backdrop-blur">
           {activity === "listen" && (
             <div className="text-center space-y-6 animate-fade-in" dir="rtl">
-              <h2 className="text-3xl font-bold text-primary" style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
-                استمع وتعلم
-              </h2>
-              
               <div className="my-12">
-                <div className={`text-[200px] animate-bounce-soft ${showFeedback ? "animate-celebrate" : ""}`}>
-                  {currentLetter.letter}
-                </div>
+                {typeof currentLetter.image === 'string' && currentLetter.image.startsWith('/') ? (
+                  <img 
+                    src={currentLetter.image} 
+                    alt={currentLetter.letter}
+                    className="w-64 h-64 mx-auto rounded-3xl object-cover shadow-xl"
+                  />
+                ) : typeof currentLetter.image === 'string' ? (
+                  <div className={`text-[200px] animate-bounce-soft ${showFeedback ? "animate-celebrate" : ""}`}>
+                    {currentLetter.image}
+                  </div>
+                ) : (
+                  <img 
+                    src={currentLetter.image} 
+                    alt={currentLetter.letter}
+                    className="w-64 h-64 mx-auto rounded-3xl object-cover shadow-xl"
+                  />
+                )}
               </div>
 
-              <div className="space-y-4">
-                <h3 className="text-4xl font-bold" style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
-                  {currentLetter.name}
-                </h3>
-                <div className="flex items-center justify-center gap-4 text-3xl">
-                  <span>{currentLetter.image}</span>
-                  <span style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>{currentLetter.example}</span>
-                </div>
+              <div className="text-[120px] font-bold animate-bounce-soft" style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
+                {currentLetter.letter}
               </div>
 
               <div className="pt-8">
@@ -131,23 +137,16 @@ const Lesson = () => {
                   }}
                   className="mb-4"
                 >
-                  <span className="text-2xl ml-2">🔊</span>
-                  استمع للنطق
+                  <span className="text-4xl">🔊</span>
                 </Button>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 pt-6">
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  onClick={() => handleActivityComplete(false)}
-                >
-                  حرف آخر؟
-                </Button>
+              <div className="flex justify-center pt-6">
                 <Button
                   variant="success"
                   size="lg"
                   onClick={() => handleActivityComplete(true)}
+                  className="min-w-[200px]"
                 >
                   <span className="text-xl">فهمت! ✓</span>
                 </Button>
@@ -157,10 +156,6 @@ const Lesson = () => {
 
           {activity === "write" && (
             <div className="text-center space-y-6 animate-fade-in" dir="rtl">
-              <h2 className="text-3xl font-bold text-accent" style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
-                ارسم الحرف
-              </h2>
-
               <div className="my-8 p-12 bg-accent/10 rounded-3xl border-4 border-dashed border-accent/30">
                 <div className="text-[150px] opacity-30 select-none">
                   {currentLetter.letter}
@@ -194,10 +189,6 @@ const Lesson = () => {
 
           {activity === "speak" && (
             <div className="text-center space-y-6 animate-fade-in" dir="rtl">
-              <h2 className="text-3xl font-bold text-secondary" style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
-                انطق الحرف
-              </h2>
-
               <div className="my-12">
                 <div className="text-[150px] animate-float">
                   🎙️
