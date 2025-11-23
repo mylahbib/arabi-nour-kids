@@ -1,0 +1,318 @@
+{
+  "unit1": {
+    "id": "unit1",
+    "name": "الحروف الأبجدية",
+    "nameEn": "Arabic Alphabet",
+    "lessons": [
+      {
+        "id": "lesson_alif",
+        "letter": "أ",
+        "name": "ألف",
+        "nameEn": "Alif",
+        "example": "أرنب",
+        "exampleEn": "Rabbit",
+        "image": "🐰",
+        "imageAlt": "rabbit-alif.jpg",
+        "pronunciation": "alif",
+        "order": 1
+      },
+      {
+        "id": "lesson_ba",
+        "letter": "ب",
+        "name": "باء",
+        "nameEn": "Ba",
+        "example": "بطة",
+        "exampleEn": "Duck",
+        "image": "🦆",
+        "pronunciation": "ba",
+        "order": 2
+      },
+      {
+        "id": "lesson_ta",
+        "letter": "ت",
+        "name": "تاء",
+        "nameEn": "Ta",
+        "example": "تفاحة",
+        "exampleEn": "Apple",
+        "image": "🍎",
+        "pronunciation": "ta",
+        "order": 3
+      },
+      {
+        "id": "lesson_tha",
+        "letter": "ث",
+        "name": "ثاء",
+        "nameEn": "Tha",
+        "example": "ثعلب",
+        "exampleEn": "Fox",
+        "image": "🦊",
+        "pronunciation": "tha",
+        "order": 4
+      },
+      {
+        "id": "lesson_jim",
+        "letter": "ج",
+        "name": "جيم",
+        "nameEn": "Jim",
+        "example": "جمل",
+        "exampleEn": "Camel",
+        "image": "🐫",
+        "pronunciation": "jim",
+        "order": 5
+      },
+      {
+        "id": "lesson_ha",
+        "letter": "ح",
+        "name": "حاء",
+        "nameEn": "Ha",
+        "example": "حصان",
+        "exampleEn": "Horse",
+        "image": "🐴",
+        "pronunciation": "ha",
+        "order": 6
+      },
+      {
+        "id": "lesson_kha",
+        "letter": "خ",
+        "name": "خاء",
+        "nameEn": "Kha",
+        "example": "خروف",
+        "exampleEn": "Sheep",
+        "image": "🐑",
+        "pronunciation": "kha",
+        "order": 7
+      },
+      {
+        "id": "lesson_dal",
+        "letter": "د",
+        "name": "دال",
+        "nameEn": "Dal",
+        "example": "دجاجة",
+        "exampleEn": "Chicken",
+        "image": "🐔",
+        "pronunciation": "dal",
+        "order": 8
+      },
+      {
+        "id": "lesson_thal",
+        "letter": "ذ",
+        "name": "ذال",
+        "nameEn": "Thal",
+        "example": "ذئب",
+        "exampleEn": "Wolf",
+        "image": "🐺",
+        "pronunciation": "thal",
+        "order": 9
+      },
+      {
+        "id": "lesson_ra",
+        "letter": "ر",
+        "name": "راء",
+        "nameEn": "Ra",
+        "example": "رمان",
+        "exampleEn": "Pomegranate",
+        "image": "🍒",
+        "pronunciation": "ra",
+        "order": 10
+      },
+      {
+        "id": "lesson_zay",
+        "letter": "ز",
+        "name": "زاي",
+        "nameEn": "Zay",
+        "example": "زرافة",
+        "exampleEn": "Giraffe",
+        "image": "🦒",
+        "pronunciation": "zay",
+        "order": 11
+      },
+      {
+        "id": "lesson_sin",
+        "letter": "س",
+        "name": "سين",
+        "nameEn": "Sin",
+        "example": "سمكة",
+        "exampleEn": "Fish",
+        "image": "🐟",
+        "pronunciation": "sin",
+        "order": 12
+      },
+      {
+        "id": "lesson_shin",
+        "letter": "ش",
+        "name": "شين",
+        "nameEn": "Shin",
+        "example": "شجرة",
+        "exampleEn": "Tree",
+        "image": "🌳",
+        "pronunciation": "shin",
+        "order": 13
+      },
+      {
+        "id": "lesson_sad",
+        "letter": "ص",
+        "name": "صاد",
+        "nameEn": "Sad",
+        "example": "صقر",
+        "exampleEn": "Falcon",
+        "image": "🦅",
+        "pronunciation": "sad",
+        "order": 14
+      },
+      {
+        "id": "lesson_dad",
+        "letter": "ض",
+        "name": "ضاد",
+        "nameEn": "Dad",
+        "example": "ضفدع",
+        "exampleEn": "Frog",
+        "image": "🐸",
+        "pronunciation": "dad",
+        "order": 15
+      },
+      {
+        "id": "lesson_ta2",
+        "letter": "ط",
+        "name": "طاء",
+        "nameEn": "Ta (emphatic)",
+        "example": "طاووس",
+        "exampleEn": "Peacock",
+        "image": "🦚",
+        "pronunciation": "ta",
+        "order": 16
+      },
+      {
+        "id": "lesson_za",
+        "letter": "ظ",
+        "name": "ظاء",
+        "nameEn": "Za",
+        "example": "ظبي",
+        "exampleEn": "Gazelle",
+        "image": "🦌",
+        "pronunciation": "za",
+        "order": 17
+      },
+      {
+        "id": "lesson_ayn",
+        "letter": "ع",
+        "name": "عين",
+        "nameEn": "Ayn",
+        "example": "عنب",
+        "exampleEn": "Grapes",
+        "image": "🍇",
+        "pronunciation": "ayn",
+        "order": 18
+      },
+      {
+        "id": "lesson_ghayn",
+        "letter": "غ",
+        "name": "غين",
+        "nameEn": "Ghayn",
+        "example": "غراب",
+        "exampleEn": "Crow",
+        "image": "🦅",
+        "pronunciation": "ghayn",
+        "order": 19
+      },
+      {
+        "id": "lesson_fa",
+        "letter": "ف",
+        "name": "فاء",
+        "nameEn": "Fa",
+        "example": "فيل",
+        "exampleEn": "Elephant",
+        "image": "🐘",
+        "pronunciation": "fa",
+        "order": 20
+      },
+      {
+        "id": "lesson_qaf",
+        "letter": "ق",
+        "name": "قاف",
+        "nameEn": "Qaf",
+        "example": "قطة",
+        "exampleEn": "Cat",
+        "image": "🐱",
+        "pronunciation": "qaf",
+        "order": 21
+      },
+      {
+        "id": "lesson_kaf",
+        "letter": "ك",
+        "name": "كاف",
+        "nameEn": "Kaf",
+        "example": "كلب",
+        "exampleEn": "Dog",
+        "image": "🐕",
+        "pronunciation": "kaf",
+        "order": 22
+      },
+      {
+        "id": "lesson_lam",
+        "letter": "ل",
+        "name": "لام",
+        "nameEn": "Lam",
+        "example": "ليمون",
+        "exampleEn": "Lemon",
+        "image": "🍋",
+        "pronunciation": "lam",
+        "order": 23
+      },
+      {
+        "id": "lesson_mim",
+        "letter": "م",
+        "name": "ميم",
+        "nameEn": "Mim",
+        "example": "موز",
+        "exampleEn": "Banana",
+        "image": "🍌",
+        "pronunciation": "mim",
+        "order": 24
+      },
+      {
+        "id": "lesson_nun",
+        "letter": "ن",
+        "name": "نون",
+        "nameEn": "Nun",
+        "example": "نحلة",
+        "exampleEn": "Bee",
+        "image": "🐝",
+        "pronunciation": "nun",
+        "order": 25
+      },
+      {
+        "id": "lesson_ha2",
+        "letter": "ه",
+        "name": "هاء",
+        "nameEn": "Ha",
+        "example": "هدهد",
+        "exampleEn": "Hoopoe",
+        "image": "🐦",
+        "pronunciation": "ha",
+        "order": 26
+      },
+      {
+        "id": "lesson_waw",
+        "letter": "و",
+        "name": "واو",
+        "nameEn": "Waw",
+        "example": "وردة",
+        "exampleEn": "Rose",
+        "image": "🌹",
+        "pronunciation": "waw",
+        "order": 27
+      },
+      {
+        "id": "lesson_ya",
+        "letter": "ي",
+        "name": "ياء",
+        "nameEn": "Ya",
+        "example": "يد",
+        "exampleEn": "Hand",
+        "image": "✋",
+        "pronunciation": "ya",
+        "order": 28
+      }
+    ]
+  }
+}

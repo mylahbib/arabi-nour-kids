@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Menu } from "lucide-react";
 import mascotReading from "@/assets/mascot-reading.png";
+import lessonsData from "@/data/lessons.json";
 
 interface UserData {
   name: string;
@@ -10,10 +11,11 @@ interface UserData {
   dialect: string;
   xp: number;
   streak: number;
+  completedLessons?: string[];
 }
 
 interface Course {
-  id: number;
+  id: string | number;
   title: string;
   icon: string;
   completed: boolean;
@@ -44,21 +46,35 @@ const Home = () => {
 
   if (!user) return null;
 
-  const arabicLetters = ["ا", "ب", "ت", "ث", "ج", "ح", "خ", "د", "ذ", "ر", "ز", "س", "ش", "ص", "ض", "ط", "ظ", "ع", "غ", "ف", "ق", "ك", "ل", "م", "ن", "هـ", "و", "ي", "ء"];
-  
+  // Get completed lessons from user data
+  const completedLessons = user.completedLessons || [];
+
+  // Generate courses from lessons.json
+  const alphabetCourses = lessonsData.unit1.lessons.map((lesson, index) => {
+    const isCompleted = completedLessons.includes(lesson.id);
+
+    // A lesson is unlocked if:
+    // 1. It's the first lesson, OR
+    // 2. The previous lesson is completed
+    const prevLesson = index > 0 ? lessonsData.unit1.lessons[index - 1] : null;
+    const isUnlocked = index === 0 || (prevLesson && completedLessons.includes(prevLesson.id));
+
+    return {
+      id: lesson.id,
+      title: `حرف ${lesson.letter} - ${lesson.example}`,
+      icon: lesson.letter,
+      completed: isCompleted,
+      locked: !isUnlocked
+    };
+  });
+
   const units: Unit[] = [
     {
       id: 1,
       title: "الْحُرُوفُ الْعَرَبِيَّةُ",
       icon: "📘",
-      progress: 10,
-      courses: arabicLetters.map((letter, index) => ({
-        id: index + 1,
-        title: `حرف ${letter}`,
-        icon: letter,
-        completed: index < 3,
-        locked: index > 2
-      }))
+      progress: Math.round((alphabetCourses.filter(c => c.completed).length / alphabetCourses.length) * 100),
+      courses: alphabetCourses
     },
     {
       id: 2,
