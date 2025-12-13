@@ -11,9 +11,10 @@
         "nameEn": "Alif",
         "example": "أرنب",
         "exampleEn": "Rabbit",
-        "image": "🐰",
-        "imageAlt": "rabbit-alif.jpg",
+        "image": "1_arnab.jpeg",
         "pronunciation": "alif",
+        "audioLetter": "alif",
+        "audioWord": "arnab",
         "order": 1
       },
       {
@@ -21,10 +22,12 @@
         "letter": "ب",
         "name": "باء",
         "nameEn": "Ba",
-        "example": "بطة",
-        "exampleEn": "Duck",
-        "image": "🦆",
+        "example": "بيت",
+        "exampleEn": "House",
+        "image": "2_bayt.jpeg",
         "pronunciation": "ba",
+        "audioLetter": "ba",
+        "audioWord": "bayt",
         "order": 2
       },
       {
@@ -34,8 +37,10 @@
         "nameEn": "Ta",
         "example": "تفاحة",
         "exampleEn": "Apple",
-        "image": "🍎",
+        "image": "6-tofaha.jpeg",
         "pronunciation": "ta",
+        "audioLetter": "ta",
+        "audioWord": "tofaha",
         "order": 3
       },
       {
@@ -47,6 +52,8 @@
         "exampleEn": "Fox",
         "image": "🦊",
         "pronunciation": "tha",
+        "audioLetter": "tha",
+        "audioWord": "thalab",
         "order": 4
       },
       {
@@ -56,8 +63,10 @@
         "nameEn": "Jim",
         "example": "جمل",
         "exampleEn": "Camel",
-        "image": "🐫",
+        "image": "4_jamal.jpeg",
         "pronunciation": "jim",
+        "audioLetter": "jim",
+        "audioWord": "jamal",
         "order": 5
       },
       {
@@ -67,8 +76,10 @@
         "nameEn": "Ha",
         "example": "حصان",
         "exampleEn": "Horse",
-        "image": "🐴",
+        "image": "28_hissan.jpeg",
         "pronunciation": "ha",
+        "audioLetter": "ha",
+        "audioWord": "hissan",
         "order": 6
       },
       {
@@ -76,10 +87,12 @@
         "letter": "خ",
         "name": "خاء",
         "nameEn": "Kha",
-        "example": "خروف",
-        "exampleEn": "Sheep",
-        "image": "🐑",
+        "example": "خبز",
+        "exampleEn": "Bread",
+        "image": "8_khoubz.jpeg",
         "pronunciation": "kha",
+        "audioLetter": "kha",
+        "audioWord": "khoubz",
         "order": 7
       },
       {
@@ -89,8 +102,10 @@
         "nameEn": "Dal",
         "example": "دجاجة",
         "exampleEn": "Chicken",
-        "image": "🐔",
+        "image": "7_dajaja.jpeg",
         "pronunciation": "dal",
+        "audioLetter": "dal",
+        "audioWord": "dajaja",
         "order": 8
       },
       {
@@ -100,8 +115,10 @@
         "nameEn": "Thal",
         "example": "ذئب",
         "exampleEn": "Wolf",
-        "image": "🐺",
+        "image": "12_diaab.jpeg",
         "pronunciation": "thal",
+        "audioLetter": "thal",
+        "audioWord": "diaab",
         "order": 9
       },
       {
@@ -109,10 +126,12 @@
         "letter": "ر",
         "name": "راء",
         "nameEn": "Ra",
-        "example": "رمان",
-        "exampleEn": "Pomegranate",
-        "image": "🍒",
+        "example": "رجل",
+        "exampleEn": "Man",
+        "image": "11_rajol.jpeg",
         "pronunciation": "ra",
+        "audioLetter": "ra",
+        "audioWord": "rajol",
         "order": 10
       },
       {
@@ -120,10 +139,12 @@
         "letter": "ز",
         "name": "زاي",
         "nameEn": "Zay",
-        "example": "زرافة",
-        "exampleEn": "Giraffe",
-        "image": "🦒",
+        "example": "زهرة",
+        "exampleEn": "Flower",
+        "image": "10_zahra.jpeg",
         "pronunciation": "zay",
+        "audioLetter": "zay",
+        "audioWord": "zahra",
         "order": 11
       },
       {
@@ -133,8 +154,10 @@
         "nameEn": "Sin",
         "example": "سمكة",
         "exampleEn": "Fish",
-        "image": "🐟",
+        "image": "15_samaka.jpeg",
         "pronunciation": "sin",
+        "audioLetter": "sin",
+        "audioWord": "samaka",
         "order": 12
       },
       {
@@ -142,10 +165,12 @@
         "letter": "ش",
         "name": "شين",
         "nameEn": "Shin",
-        "example": "شجرة",
-        "exampleEn": "Tree",
-        "image": "🌳",
+        "example": "شمس",
+        "exampleEn": "Sun",
+        "image": "14_chams.jpeg",
         "pronunciation": "shin",
+        "audioLetter": "shin",
+        "audioWord": "chams",
         "order": 13
       },
       {
@@ -153,10 +178,12 @@
         "letter": "ص",
         "name": "صاد",
         "nameEn": "Sad",
-        "example": "صقر",
-        "exampleEn": "Falcon",
-        "image": "🦅",
+        "example": "صحراء",
+        "exampleEn": "Desert",
+        "image": "13_sahrah.jpeg",
         "pronunciation": "sad",
+        "audioLetter": "sad",
+        "audioWord": "sahrah",
         "order": 14
       },
       {
@@ -166,8 +193,10 @@
         "nameEn": "Dad",
         "example": "ضفدع",
         "exampleEn": "Frog",
-        "image": "🐸",
+        "image": "18_dafdaa.jpeg",
         "pronunciation": "dad",
+        "audioLetter": "dad",
+        "audioWord": "dafdaa",
         "order": 15
       },
       {
@@ -175,10 +204,12 @@
         "letter": "ط",
         "name": "طاء",
         "nameEn": "Ta (emphatic)",
-        "example": "طاووس",
-        "exampleEn": "Peacock",
-        "image": "🦚",
-        "pronunciation": "ta",
+        "example": "طفل",
+        "exampleEn": "Child",
+        "image": "17_tifl.jpeg",
+        "pronunciation": "ta2",
+        "audioLetter": "ta2",
+        "audioWord": "tifl",
         "order": 16
       },
       {
@@ -186,10 +217,12 @@
         "letter": "ظ",
         "name": "ظاء",
         "nameEn": "Za",
-        "example": "ظبي",
-        "exampleEn": "Gazelle",
-        "image": "🦌",
+        "example": "ظل",
+        "exampleEn": "Shadow",
+        "image": "16_dil.jpeg",
         "pronunciation": "za",
+        "audioLetter": "za",
+        "audioWord": "dil",
         "order": 17
       },
       {
@@ -197,10 +230,12 @@
         "letter": "ع",
         "name": "عين",
         "nameEn": "Ayn",
-        "example": "عنب",
-        "exampleEn": "Grapes",
-        "image": "🍇",
+        "example": "عين",
+        "exampleEn": "Eye",
+        "image": "21_ayn.jpeg",
         "pronunciation": "ayn",
+        "audioLetter": "ayn",
+        "audioWord": "ayn",
         "order": 18
       },
       {
@@ -208,10 +243,12 @@
         "letter": "غ",
         "name": "غين",
         "nameEn": "Ghayn",
-        "example": "غراب",
-        "exampleEn": "Crow",
-        "image": "🦅",
+        "example": "غزال",
+        "exampleEn": "Gazelle",
+        "image": "20_gazal.jpeg",
         "pronunciation": "ghayn",
+        "audioLetter": "ghayn",
+        "audioWord": "gazal",
         "order": 19
       },
       {
@@ -221,8 +258,10 @@
         "nameEn": "Fa",
         "example": "فيل",
         "exampleEn": "Elephant",
-        "image": "🐘",
+        "image": "19_fil.jpeg",
         "pronunciation": "fa",
+        "audioLetter": "fa",
+        "audioWord": "fil",
         "order": 20
       },
       {
@@ -230,10 +269,12 @@
         "letter": "ق",
         "name": "قاف",
         "nameEn": "Qaf",
-        "example": "قطة",
-        "exampleEn": "Cat",
-        "image": "🐱",
+        "example": "قلم",
+        "exampleEn": "Pen",
+        "image": "24_9alam.jpeg",
         "pronunciation": "qaf",
+        "audioLetter": "qaf",
+        "audioWord": "qalam",
         "order": 21
       },
       {
@@ -241,10 +282,12 @@
         "letter": "ك",
         "name": "كاف",
         "nameEn": "Kaf",
-        "example": "كلب",
-        "exampleEn": "Dog",
-        "image": "🐕",
+        "example": "كرة",
+        "exampleEn": "Ball",
+        "image": "23_koura.jpeg",
         "pronunciation": "kaf",
+        "audioLetter": "kaf",
+        "audioWord": "koura",
         "order": 22
       },
       {
@@ -252,10 +295,12 @@
         "letter": "ل",
         "name": "لام",
         "nameEn": "Lam",
-        "example": "ليمون",
-        "exampleEn": "Lemon",
-        "image": "🍋",
+        "example": "لبن",
+        "exampleEn": "Milk",
+        "image": "29_laban.jpeg",
         "pronunciation": "lam",
+        "audioLetter": "lam",
+        "audioWord": "laban",
         "order": 23
       },
       {
@@ -263,10 +308,12 @@
         "letter": "م",
         "name": "ميم",
         "nameEn": "Mim",
-        "example": "موز",
-        "exampleEn": "Banana",
-        "image": "🍌",
+        "example": "مدرسة",
+        "exampleEn": "School",
+        "image": "3_madrassa.jpeg",
         "pronunciation": "mim",
+        "audioLetter": "mim",
+        "audioWord": "madrassa",
         "order": 24
       },
       {
@@ -274,10 +321,12 @@
         "letter": "ن",
         "name": "نون",
         "nameEn": "Nun",
-        "example": "نحلة",
-        "exampleEn": "Bee",
-        "image": "🐝",
+        "example": "نخلة",
+        "exampleEn": "Palm tree",
+        "image": "22_nakhla.jpeg",
         "pronunciation": "nun",
+        "audioLetter": "nun",
+        "audioWord": "nakhla",
         "order": 25
       },
       {
@@ -285,10 +334,12 @@
         "letter": "ه",
         "name": "هاء",
         "nameEn": "Ha",
-        "example": "هدهد",
-        "exampleEn": "Hoopoe",
-        "image": "🐦",
-        "pronunciation": "ha",
+        "example": "هدية",
+        "exampleEn": "Gift",
+        "image": "27_hadia.jpeg",
+        "pronunciation": "ha2",
+        "audioLetter": "ha2",
+        "audioWord": "hadia",
         "order": 26
       },
       {
@@ -298,8 +349,10 @@
         "nameEn": "Waw",
         "example": "وردة",
         "exampleEn": "Rose",
-        "image": "🌹",
+        "image": "26_warda.jpeg",
         "pronunciation": "waw",
+        "audioLetter": "waw",
+        "audioWord": "warda",
         "order": 27
       },
       {
@@ -309,8 +362,10 @@
         "nameEn": "Ya",
         "example": "يد",
         "exampleEn": "Hand",
-        "image": "✋",
+        "image": "25_yad.jpeg",
         "pronunciation": "ya",
+        "audioLetter": "ya",
+        "audioWord": "yad",
         "order": 28
       }
     ]

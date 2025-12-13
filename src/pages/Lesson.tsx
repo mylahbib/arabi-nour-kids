@@ -5,8 +5,24 @@ import { Card } from "@/components/ui/card";
 import { Progress as ProgressBar } from "@/components/ui/progress";
 import { toast } from "sonner";
 
-import rabbitAlif from "@/assets/rabbit-alif.jpg";
 import lessonsData from "@/data/lessons.json";
+import { playLetterAudio, playMascotAudio, stopAudio } from "@/lib/audioPlayer";
+
+// Helper function to dynamically import images
+const getImagePath = (imageName: string) => {
+  // If it's an emoji (starts with emoji character), return it directly
+  if (imageName.startsWith("�") || imageName.startsWith("✋")) {
+    return imageName;
+  }
+
+  // Otherwise, return the path to the image in lettres folder
+  try {
+    return new URL(`../assets/lettres/${imageName}`, import.meta.url).href;
+  } catch {
+    // Fallback to emoji if image not found
+    return "📷";
+  }
+};
 
 // Get all letters from JSON
 const allLetters = lessonsData.unit1.lessons.map((lesson) => ({
@@ -14,8 +30,9 @@ const allLetters = lessonsData.unit1.lessons.map((lesson) => ({
   letter: lesson.letter,
   name: lesson.name,
   example: lesson.example,
-  // Use the uploaded image for Alif, otherwise use emoji
-  image: lesson.letter === "أ" ? rabbitAlif : lesson.image,
+  image: getImagePath(lesson.image),
+  audioLetter: (lesson as any).audioLetter || lesson.pronunciation,
+  audioWord: (lesson as any).audioWord || lesson.pronunciation,
   order: lesson.order,
 }));
 
@@ -61,13 +78,11 @@ const Lesson = () => {
   const currentLetter = allLetters.find((letter) => letter.id === id) || allLetters[0];
   const progress = ((currentStepIndex + 1) / lessonFlow.length) * 100;
 
-  // Auto-advance function
-  const advanceToNextStep = (delay: number = 2000) => {
-    setTimeout(() => {
-      if (currentStepIndex < lessonFlow.length - 1) {
-        setCurrentStepIndex((prev) => prev + 1);
-      }
-    }, delay);
+  // Manual advance to next step
+  const advanceToNextStep = () => {
+    if (currentStepIndex < lessonFlow.length - 1) {
+      setCurrentStepIndex((prev) => prev + 1);
+    }
   };
 
   // Safety check
@@ -84,47 +99,40 @@ const Lesson = () => {
     );
   }
 
-  // Auto-advance for intro, show_letter, show_image, and review screens
+  // Auto-play sounds when entering certain screens (no auto-advance)
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-
     if (currentStep === "intro_screen") {
-      // Play intro sound
-      toast.info("🎵 مرحباً بك!");
-      timer = setTimeout(() => {
-        setCurrentStepIndex((prev) => prev + 1);
-      }, 3000);
+      // Play mascot intro sound
+      setTimeout(() => {
+        playMascotAudio("intro", "مرحباً بك");
+        toast.info("🎵 مرحباً بك!");
+      }, 300);
     } else if (currentStep === "show_letter") {
       // Play letter pronunciation automatically
       setTimeout(() => {
+        playLetterAudio(currentLetter.audioLetter, currentLetter.name);
         toast.info(`🔊 ${currentLetter.name}`);
       }, 500);
-      // Auto-advance after showing letter
-      timer = setTimeout(() => {
-        setCurrentStepIndex((prev) => prev + 1);
-      }, 4000);
     } else if (currentStep === "show_image") {
       // Play word pronunciation automatically
       setTimeout(() => {
+        playLetterAudio(currentLetter.audioWord, currentLetter.example);
         toast.info(`🔊 ${currentLetter.example}`);
       }, 500);
-      // Auto-advance after showing image
-      timer = setTimeout(() => {
-        setCurrentStepIndex((prev) => prev + 1);
-      }, 4000);
     } else if (currentStep === "review_screen") {
-      // Play review sound
-      setTimeout(() => {
+      // Play review sound - letter then word
+      setTimeout(async () => {
+        await playLetterAudio(currentLetter.audioLetter, currentLetter.letter);
+        setTimeout(() => {
+          playLetterAudio(currentLetter.audioWord, currentLetter.example);
+        }, 800);
         toast.info(`🔊 ${currentLetter.letter} ... ${currentLetter.example}`);
       }, 500);
-      // Auto-advance to completion
-      timer = setTimeout(() => {
-        setCurrentStepIndex((prev) => prev + 1);
-      }, 5000);
     }
 
+    // Cleanup: stop audio when component unmounts or step changes
     return () => {
-      if (timer) clearTimeout(timer);
+      stopAudio();
     };
   }, [currentStep, currentLetter]);
 
@@ -163,7 +171,8 @@ const Lesson = () => {
     toast.success("ممتاز! 🌟", {
       description: `لقد ربحت ${earnedXp} نقطة!`,
     });
-    advanceToNextStep();
+    // Auto-advance after game completion
+    setTimeout(() => advanceToNextStep(), 1500);
   };
 
   const handleLessonComplete = () => {
@@ -246,13 +255,18 @@ const Lesson = () => {
               </div>
 
               <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-md mx-auto px-4">
-                سنتعلم اليوم حرف الألف مع أصدقائنا المرحين!
+                سنتعلم اليوم حرف {currentLetter.letter} مع أصدقائنا المرحين!
               </p>
 
-              <div className="pt-4 sm:pt-6">
-                <div className="text-base sm:text-lg text-muted-foreground animate-pulse">
-                  جاري التحضير...
-                </div>
+              <div className="pt-6 sm:pt-8">
+                <Button
+                  variant="kid"
+                  size="lg"
+                  onClick={advanceToNextStep}
+                  className="text-xl sm:text-2xl px-8 sm:px-12 py-4 sm:py-6 h-auto"
+                >
+                  ابدأ الدرس! 🚀
+                </Button>
               </div>
             </div>
           )}
@@ -266,9 +280,10 @@ const Lesson = () => {
 
               <div className="relative my-6 sm:my-8 md:my-12">
                 <div
-                  className="text-[clamp(120px,25vw,200px)] font-bold animate-pop-in text-primary"
+                  className="text-[clamp(120px,25vw,200px)] font-bold animate-pop-in text-primary cursor-pointer"
                   style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}
                   onClick={() => {
+                    playLetterAudio(currentLetter.audioLetter, currentLetter.name);
                     toast.info(`🔊 ${currentLetter.name}`);
                   }}
                 >
@@ -281,17 +296,31 @@ const Lesson = () => {
                 <div className="absolute top-1/2 right-1/4 text-2xl sm:text-3xl md:text-4xl animate-sparkle" style={{ animationDelay: "0.6s" }}>⭐</div>
               </div>
 
-              <Button
-                variant="kid"
-                size="lg"
-                onClick={() => {
-                  toast.info(`🔊 ${currentLetter.name}`);
-                }}
-                className="text-lg sm:text-xl md:text-2xl px-6 sm:px-8 py-4 sm:py-6 h-auto"
-              >
-                <span className="text-3xl sm:text-4xl ml-2">🔊</span>
-                اضغط للاستماع
-              </Button>
+              <div className="space-y-4">
+                <Button
+                  variant="kid"
+                  size="lg"
+                  onClick={() => {
+                    playLetterAudio(currentLetter.audioLetter, currentLetter.name);
+                    toast.info(`🔊 ${currentLetter.name}`);
+                  }}
+                  className="text-lg sm:text-xl md:text-2xl px-6 sm:px-8 py-4 sm:py-6 h-auto"
+                >
+                  <span className="text-3xl sm:text-4xl ml-2">🔊</span>
+                  اضغط للاستماع
+                </Button>
+
+                <div className="pt-2">
+                  <Button
+                    variant="success"
+                    size="lg"
+                    onClick={advanceToNextStep}
+                    className="text-xl sm:text-2xl px-8 sm:px-12 py-4 sm:py-6 h-auto min-w-[200px]"
+                  >
+                    التالي ←
+                  </Button>
+                </div>
+              </div>
             </div>
           )}
 
@@ -320,17 +349,31 @@ const Lesson = () => {
                 {currentLetter.example}
               </div>
 
-              <Button
-                variant="kid"
-                size="lg"
-                onClick={() => {
-                  toast.info(`🔊 ${currentLetter.example}`);
-                }}
-                className="text-lg sm:text-xl px-6 sm:px-8 py-4 sm:py-6 h-auto"
-              >
-                <span className="text-3xl sm:text-4xl ml-2">🔊</span>
-                استمع للكلمة
-              </Button>
+              <div className="space-y-4">
+                <Button
+                  variant="kid"
+                  size="lg"
+                  onClick={() => {
+                    playLetterAudio(currentLetter.audioWord, currentLetter.example);
+                    toast.info(`🔊 ${currentLetter.example}`);
+                  }}
+                  className="text-lg sm:text-xl px-6 sm:px-8 py-4 sm:py-6 h-auto"
+                >
+                  <span className="text-3xl sm:text-4xl ml-2">🔊</span>
+                  استمع للكلمة
+                </Button>
+
+                <div className="pt-2">
+                  <Button
+                    variant="success"
+                    size="lg"
+                    onClick={advanceToNextStep}
+                    className="text-xl sm:text-2xl px-8 sm:px-12 py-4 sm:py-6 h-auto min-w-[200px]"
+                  >
+                    التالي ←
+                  </Button>
+                </div>
+              </div>
             </div>
           )}
 
@@ -525,11 +568,11 @@ const Lesson = () => {
             </div>
           )}
 
-          {/* 8. SPEAK LETTER SCREEN */}
+          {/* 8. SPEAK LETTER SCREEN - OPTIONAL */}
           {currentStep === "speak_letter" && (
             <div className="text-center space-y-6 sm:space-y-8 md:space-y-10 animate-fade-in w-full" dir="rtl">
               <div className="text-xl sm:text-2xl md:text-3xl font-semibold text-secondary" style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
-                الآن دورك!
+                الآن دورك! (اختياري)
               </div>
 
               <div className="my-6 sm:my-8 md:my-12">
@@ -542,22 +585,36 @@ const Lesson = () => {
                 {currentLetter.letter}
               </div>
 
-              <Button
-                variant="kid"
-                size="lg"
-                onClick={() => {
-                  toast.info("جاري الاستماع... 🎤");
-                  setTimeout(() => handleStepComplete(10), 1500);
-                }}
-                className="text-lg sm:text-xl md:text-2xl px-6 sm:px-8 py-4 sm:py-6 h-auto"
-              >
-                <span className="text-3xl sm:text-4xl ml-2">🎤</span>
-                اضغط وانطق الحرف
-              </Button>
-
-              <p className="text-base sm:text-lg text-muted-foreground pt-4 px-4">
+              <p className="text-base sm:text-lg text-muted-foreground mb-6 px-4">
                 قل الحرف بصوت عالٍ وواضح
               </p>
+
+              <div className="space-y-4 max-w-md mx-auto">
+                <Button
+                  variant="kid"
+                  size="lg"
+                  onClick={() => {
+                    toast.info("جاري الاستماع... 🎤");
+                    setTimeout(() => handleStepComplete(10), 1500);
+                  }}
+                  className="w-full text-lg sm:text-xl md:text-2xl px-6 sm:px-8 py-4 sm:py-6 h-auto"
+                >
+                  <span className="text-3xl sm:text-4xl ml-2">🎤</span>
+                  اضغط وانطق الحرف
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() => {
+                    toast.info("تم التخطي");
+                    advanceToNextStep();
+                  }}
+                  className="w-full text-lg sm:text-xl px-6 py-4 h-auto"
+                >
+                  تخطي ←
+                </Button>
+              </div>
             </div>
           )}
 
@@ -596,8 +653,15 @@ const Lesson = () => {
                 {currentLetter.letter} ... {currentLetter.example}
               </div>
 
-              <div className="pt-4 text-base sm:text-lg text-muted-foreground animate-pulse">
-                جاري الانتقال إلى الختام...
+              <div className="pt-6 sm:pt-8">
+                <Button
+                  variant="success"
+                  size="lg"
+                  onClick={advanceToNextStep}
+                  className="text-xl sm:text-2xl px-8 sm:px-12 py-4 sm:py-6 h-auto animate-pulse"
+                >
+                  إنهاء الدرس! 🎉
+                </Button>
               </div>
             </div>
           )}
