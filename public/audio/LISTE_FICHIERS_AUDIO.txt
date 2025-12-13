@@ -1,0 +1,166 @@
+╔════════════════════════════════════════════════════════════════════════╗
+║              LISTE COMPLÈTE DES FICHIERS AUDIO À CRÉER                 ║
+╚════════════════════════════════════════════════════════════════════════╝
+
+📁 DOSSIER: public/audio/letters/
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔤 FICHIERS AUDIO DES LETTRES (Prononciation du nom de la lettre)
+──────────────────────────────────────────────────────────────────────
+
+✓ alif.mp3        → Prononciation: "ألف"
+✓ ba.mp3          → Prononciation: "باء"
+✓ ta.mp3          → Prononciation: "تاء"
+✓ tha.mp3         → Prononciation: "ثاء"
+✓ jim.mp3         → Prononciation: "جيم"
+✓ ha.mp3          → Prononciation: "حاء"
+✓ kha.mp3         → Prononciation: "خاء"
+✓ dal.mp3         → Prononciation: "دال"
+✓ thal.mp3        → Prononciation: "ذال"
+✓ ra.mp3          → Prononciation: "راء"
+✓ zay.mp3         → Prononciation: "زاي"
+✓ sin.mp3         → Prononciation: "سين"
+✓ shin.mp3        → Prononciation: "شين"
+✓ sad.mp3         → Prononciation: "صاد"
+✓ dad.mp3         → Prononciation: "ضاد"
+✓ ta2.mp3         → Prononciation: "طاء"
+✓ za.mp3          → Prononciation: "ظاء"
+✓ ayn.mp3         → Prononciation: "عين"
+✓ ghayn.mp3       → Prononciation: "غين"
+✓ fa.mp3          → Prononciation: "فاء"
+✓ qaf.mp3         → Prononciation: "قاف"
+✓ kaf.mp3         → Prononciation: "كاف"
+✓ lam.mp3         → Prononciation: "لام"
+✓ mim.mp3         → Prononciation: "ميم"
+✓ nun.mp3         → Prononciation: "نون"
+✓ ha2.mp3         → Prononciation: "هاء"
+✓ waw.mp3         → Prononciation: "واو"
+✓ ya.mp3          → Prononciation: "ياء"
+
+Total: 28 fichiers
+
+
+📝 FICHIERS AUDIO DES MOTS (Prononciation du mot exemple)
+──────────────────────────────────────────────────────────────────────
+
+✓ arnab.mp3       → أرنب (Rabbit / Lapin)
+✓ bayt.mp3        → بيت (House / Maison)
+✓ tofaha.mp3      → تفاحة (Apple / Pomme)
+✓ thalab.mp3      → ثعلب (Fox / Renard)
+✓ jamal.mp3       → جمل (Camel / Chameau)
+✓ hissan.mp3      → حصان (Horse / Cheval)
+✓ khoubz.mp3      → خبز (Bread / Pain)
+✓ dajaja.mp3      → دجاجة (Chicken / Poulet)
+✓ diaab.mp3       → ذئب (Wolf / Loup)
+✓ rajol.mp3       → رجل (Man / Homme)
+✓ zahra.mp3       → زهرة (Flower / Fleur)
+✓ samaka.mp3      → سمكة (Fish / Poisson)
+✓ chams.mp3       → شمس (Sun / Soleil)
+✓ sahrah.mp3      → صحراء (Desert / Désert)
+✓ dafdaa.mp3      → ضفدع (Frog / Grenouille)
+✓ tifl.mp3        → طفل (Child / Enfant)
+✓ dil.mp3         → ظل (Shadow / Ombre)
+✓ ayn.mp3         → عين (Eye / Œil)
+✓ gazal.mp3       → غزال (Gazelle)
+✓ fil.mp3         → فيل (Elephant / Éléphant)
+✓ qalam.mp3       → قلم (Pen / Stylo)
+✓ koura.mp3       → كرة (Ball / Ballon)
+✓ laban.mp3       → لبن (Milk / Lait)
+✓ madrassa.mp3    → مدرسة (School / École)
+✓ nakhla.mp3      → نخلة (Palm tree / Palmier)
+✓ hadia.mp3       → هدية (Gift / Cadeau)
+✓ warda.mp3       → وردة (Rose)
+✓ yad.mp3         → يد (Hand / Main)
+
+Total: 28 fichiers
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📁 DOSSIER: public/audio/mascot/
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎭 FICHIERS AUDIO DE LA MASCOTTE (Voix du guide)
+──────────────────────────────────────────────────────────────────────
+
+✓ mascot_intro.mp3             → "مرحباً بك" (Bienvenue)
+✓ mascot_excellent.mp3         → "ممتاز!" (Excellent!)
+✓ mascot_congratulations.mp3   → "أحسنت!" (Bien joué!)
+✓ mascot_try_again.mp3         → "حاول مرة أخرى" (Réessaie)
+✓ mascot_great_job.mp3         → "عمل رائع" (Super travail)
+✓ mascot_well_done.mp3         → "أحسنت صنعاً" (Très bien fait)
+✓ mascot_keep_going.mp3        → "استمر" (Continue)
+✓ mascot_amazing.mp3           → "رائع جداً" (Incroyable)
+
+Total: 8 fichiers (minimum recommandé)
+
+
+═══════════════════════════════════════════════════════════════════════
+
+📊 RÉSUMÉ TOTAL
+───────────────────────────────────────────────────────────────────────
+
+Lettres:         28 fichiers MP3
+Mots:            28 fichiers MP3
+Mascotte:         8 fichiers MP3
+─────────────────────────────────────
+TOTAL:           64 fichiers MP3
+
+
+═══════════════════════════════════════════════════════════════════════
+
+⚙️ PARAMÈTRES TECHNIQUES POUR CHAQUE FICHIER
+───────────────────────────────────────────────────────────────────────
+
+Format:          MP3
+Bitrate:         128 kbps
+Sample Rate:     44.1 kHz
+Channels:        Mono (1 canal)
+Durée moyenne:   2-5 secondes par fichier
+
+
+═══════════════════════════════════════════════════════════════════════
+
+✅ PRIORITÉS DE PRODUCTION
+───────────────────────────────────────────────────────────────────────
+
+PHASE 1 - URGENT (5 lettres + intro) :
+  □ alif.mp3, arnab.mp3
+  □ ba.mp3, bayt.mp3
+  □ ta.mp3, tofaha.mp3
+  □ jim.mp3, jamal.mp3
+  □ ha.mp3, hissan.mp3
+  □ mascot_intro.mp3
+
+PHASE 2 - IMPORTANT (10 lettres suivantes) :
+  □ kha.mp3 → ya.mp3 (fichiers lettres)
+  □ khoubz.mp3 → yad.mp3 (fichiers mots)
+
+PHASE 3 - FINAL (lettres restantes + mascotte) :
+  □ Lettres restantes
+  □ Tous les fichiers mascotte
+
+
+═══════════════════════════════════════════════════════════════════════
+
+📝 NOTES IMPORTANTES
+───────────────────────────────────────────────────────────────────────
+
+1. Les noms de fichiers doivent être EXACTEMENT comme indiqué
+2. Utilisez toujours des minuscules (alif.mp3, PAS Alif.mp3)
+3. Ne changez JAMAIS les noms de fichiers
+4. Format MP3 OBLIGATOIRE pour compatibilité maximale
+5. L'application fonctionne même si des fichiers manquent (TTS de secours)
+
+
+═══════════════════════════════════════════════════════════════════════
+
+🎯 EXEMPLE DE COMMANDE FFMPEG (Conversion vers MP3)
+───────────────────────────────────────────────────────────────────────
+
+Pour convertir un fichier WAV en MP3 128kbps mono :
+
+    ffmpeg -i alif.wav -b:a 128k -ac 1 alif.mp3
+
+
+═══════════════════════════════════════════════════════════════════════
