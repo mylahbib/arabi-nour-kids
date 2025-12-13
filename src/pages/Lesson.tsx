@@ -273,15 +273,16 @@ const Lesson = () => {
 
           {/* 2. SHOW LETTER SCREEN */}
           {currentStep === "show_letter" && (
-            <div className="text-center space-y-6 sm:space-y-8 md:space-y-10 animate-fade-in w-full" dir="rtl">
-              <div className="text-xl sm:text-2xl md:text-3xl font-semibold text-secondary" style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
-                هذا هو الحرف
-              </div>
-
+            <div className="text-center space-y-6 sm:space-y-8 md:space-y-10 animate-fade-in w-full flex flex-col items-center justify-center min-h-[50vh]" dir="rtl">
+              {/* Large Letter with Decorative Border */}
               <div className="relative my-6 sm:my-8 md:my-12">
                 <div
-                  className="text-[clamp(120px,25vw,200px)] font-bold animate-pop-in text-primary cursor-pointer"
-                  style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}
+                  className="text-[clamp(180px,35vw,280px)] font-bold animate-pop-in text-primary cursor-pointer relative"
+                  style={{
+                    fontFamily: "'Noto Kufi Arabic', sans-serif",
+                    textShadow: '4px 4px 0px hsl(14, 35%, 26%), 6px 6px 0px hsl(38, 100%, 56%)',
+                    WebkitTextStroke: '2px hsl(14, 35%, 26%)'
+                  }}
                   onClick={() => {
                     playLetterAudio(currentLetter.audioLetter, currentLetter.name);
                     toast.info(`🔊 ${currentLetter.name}`);
@@ -289,48 +290,39 @@ const Lesson = () => {
                 >
                   {currentLetter.letter}
                 </div>
-
-                {/* Sparkles */}
-                <div className="absolute top-0 right-0 text-3xl sm:text-4xl md:text-5xl animate-sparkle">✨</div>
-                <div className="absolute bottom-0 left-0 text-3xl sm:text-4xl md:text-5xl animate-sparkle" style={{ animationDelay: "0.3s" }}>✨</div>
-                <div className="absolute top-1/2 right-1/4 text-2xl sm:text-3xl md:text-4xl animate-sparkle" style={{ animationDelay: "0.6s" }}>⭐</div>
               </div>
 
-              <div className="space-y-4">
-                <Button
-                  variant="kid"
-                  size="lg"
+              {/* Pink Circular Audio Button */}
+              <div className="my-4">
+                <button
                   onClick={() => {
                     playLetterAudio(currentLetter.audioLetter, currentLetter.name);
                     toast.info(`🔊 ${currentLetter.name}`);
                   }}
-                  className="text-lg sm:text-xl md:text-2xl px-6 sm:px-8 py-4 sm:py-6 h-auto"
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-pink-200 to-pink-300 hover:from-pink-300 hover:to-pink-400 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 border-4 border-white"
+                  aria-label="استمع للحرف"
                 >
-                  <span className="text-3xl sm:text-4xl ml-2">🔊</span>
-                  اضغط للاستماع
-                </Button>
+                  <span className="text-4xl sm:text-5xl">🐰</span>
+                </button>
+              </div>
 
-                <div className="pt-2">
-                  <Button
-                    variant="success"
-                    size="lg"
-                    onClick={advanceToNextStep}
-                    className="text-xl sm:text-2xl px-8 sm:px-12 py-4 sm:py-6 h-auto min-w-[200px]"
-                  >
-                    التالي ←
-                  </Button>
-                </div>
+              {/* Green Arrow Next Button */}
+              <div className="pt-6">
+                <Button
+                  variant="success"
+                  size="lg"
+                  onClick={advanceToNextStep}
+                  className="text-xl sm:text-2xl px-12 sm:px-16 py-6 sm:py-8 h-auto rounded-full min-w-[240px] bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 shadow-xl"
+                >
+                  الحد اللاحق ←
+                </Button>
               </div>
             </div>
           )}
 
           {/* 3. SHOW IMAGE SCREEN */}
           {currentStep === "show_image" && (
-            <div className="text-center space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in w-full" dir="rtl">
-              <div className="text-xl sm:text-2xl md:text-3xl font-semibold text-secondary" style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
-                كلمة تبدأ بحرف {currentLetter.letter}
-              </div>
-
+            <div className="text-center space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in w-full flex flex-col items-center justify-center min-h-[50vh]" dir="rtl">
               <div className="my-6 sm:my-8 md:my-12 animate-zoom-in">
                 {typeof currentLetter.image === "string" && currentLetter.image.startsWith("�") ? (
                   <div className="text-[clamp(100px,20vw,180px)] animate-wiggle">
@@ -349,30 +341,30 @@ const Lesson = () => {
                 {currentLetter.example}
               </div>
 
-              <div className="space-y-4">
-                <Button
-                  variant="kid"
-                  size="lg"
+              {/* Pink Circular Audio Button */}
+              <div className="my-4">
+                <button
                   onClick={() => {
                     playLetterAudio(currentLetter.audioWord, currentLetter.example);
                     toast.info(`🔊 ${currentLetter.example}`);
                   }}
-                  className="text-lg sm:text-xl px-6 sm:px-8 py-4 sm:py-6 h-auto"
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-pink-200 to-pink-300 hover:from-pink-300 hover:to-pink-400 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 border-4 border-white"
+                  aria-label="استمع للكلمة"
                 >
-                  <span className="text-3xl sm:text-4xl ml-2">🔊</span>
-                  استمع للكلمة
-                </Button>
+                  <span className="text-4xl sm:text-5xl">🐰</span>
+                </button>
+              </div>
 
-                <div className="pt-2">
-                  <Button
-                    variant="success"
-                    size="lg"
-                    onClick={advanceToNextStep}
-                    className="text-xl sm:text-2xl px-8 sm:px-12 py-4 sm:py-6 h-auto min-w-[200px]"
-                  >
-                    التالي ←
-                  </Button>
-                </div>
+              {/* Green Arrow Next Button */}
+              <div className="pt-4">
+                <Button
+                  variant="success"
+                  size="lg"
+                  onClick={advanceToNextStep}
+                  className="text-xl sm:text-2xl px-12 sm:px-16 py-6 sm:py-8 h-auto rounded-full min-w-[240px] bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 shadow-xl"
+                >
+                  الحد اللاحق ←
+                </Button>
               </div>
             </div>
           )}
@@ -620,13 +612,16 @@ const Lesson = () => {
 
           {/* 9. REVIEW SCREEN */}
           {currentStep === "review_screen" && (
-            <div className="text-center space-y-6 sm:space-y-8 md:space-y-10 animate-fade-in w-full" dir="rtl">
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-secondary" style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
-                لنراجع ما تعلمناه
-              </div>
-
+            <div className="text-center space-y-6 sm:space-y-8 md:space-y-10 animate-fade-in w-full flex flex-col items-center justify-center min-h-[50vh]" dir="rtl">
               <div className="my-6 sm:my-8 md:my-12 relative">
-                <div className="text-[clamp(100px,20vw,150px)] font-bold animate-morph text-primary" style={{ fontFamily: "'Noto Kufi Arabic', sans-serif" }}>
+                <div
+                  className="text-[clamp(120px,25vw,180px)] font-bold animate-morph text-primary"
+                  style={{
+                    fontFamily: "'Noto Kufi Arabic', sans-serif",
+                    textShadow: '3px 3px 0px hsl(14, 35%, 26%), 5px 5px 0px hsl(38, 100%, 56%)',
+                    WebkitTextStroke: '2px hsl(14, 35%, 26%)'
+                  }}
+                >
                   {currentLetter.letter}
                 </div>
 
@@ -658,7 +653,7 @@ const Lesson = () => {
                   variant="success"
                   size="lg"
                   onClick={advanceToNextStep}
-                  className="text-xl sm:text-2xl px-8 sm:px-12 py-4 sm:py-6 h-auto animate-pulse"
+                  className="text-xl sm:text-2xl px-12 sm:px-16 py-6 sm:py-8 h-auto rounded-full min-w-[240px] bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 shadow-xl animate-pulse"
                 >
                   إنهاء الدرس! 🎉
                 </Button>
